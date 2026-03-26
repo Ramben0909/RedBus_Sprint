@@ -1,15 +1,15 @@
-package testRunner;
+package testRunner.TrainSearchResults;
 
 
 import Pages.Trains.SearchTrainsPage;
+import Utils.ExcelUtilsRB;
 import Pages.Trains.ResultsPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import Hooks.DriverManager;
-import utils.ExcelUtils;
+import DriverManager.DriverManagerRB;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ExcelDrivenTest {
+public class ExcelDrivenTestRB {
 
     private static final String FILE_PATH =
             "src/test/resources/TestData/TrainSearchData.xlsx";
@@ -26,7 +26,7 @@ public class ExcelDrivenTest {
 
     @DataProvider(name = "validSearchData", parallel = true)
     public Object[][] getValidSearchData() throws IOException {
-        List<String[]> rows = ExcelUtils.getTestData(FILE_PATH, "ValidSearch");
+        List<String[]> rows = ExcelUtilsRB.getTestData(FILE_PATH, "ValidSearch");
 
         List<Object[]> filtered = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class ExcelDrivenTest {
 
     @DataProvider(name = "dateSearchData", parallel = true)
     public Object[][] getDateSearchData() throws IOException {
-        List<String[]> rows = ExcelUtils.getTestData(FILE_PATH, "DateSearch");
+        List<String[]> rows = ExcelUtilsRB.getTestData(FILE_PATH, "DateSearch");
 
         List<Object[]> filtered = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class ExcelDrivenTest {
 
     @DataProvider(name = "invalidSearchData", parallel = true)
     public Object[][] getInvalidSearchData() throws IOException {
-        List<String[]> rows = ExcelUtils.getTestData(FILE_PATH, "InvalidSearch");
+        List<String[]> rows = ExcelUtilsRB.getTestData(FILE_PATH, "InvalidSearch");
 
         List<Object[]> filtered = new ArrayList<>();
 
@@ -82,8 +82,8 @@ public class ExcelDrivenTest {
                                  String toInput, String toSelect)
             throws InterruptedException {
 
-        DriverManager.setDriver();
-        WebDriver driver = DriverManager.getDriver();
+        DriverManagerRB.setDriver();
+        WebDriver driver = DriverManagerRB.getDriver();
 
         SearchTrainsPage searchPage = setup(driver);
         ResultsPage resultsPage = new ResultsPage(driver);
@@ -99,7 +99,7 @@ public class ExcelDrivenTest {
             Assert.assertTrue(resultsPage.areResultsDisplayed());
 
         } finally {
-            DriverManager.quitDriver();
+            DriverManagerRB.quitDriver();
         }
     }
 
@@ -109,8 +109,8 @@ public class ExcelDrivenTest {
                                 String date)
             throws InterruptedException {
 
-        DriverManager.setDriver();
-        WebDriver driver = DriverManager.getDriver();
+        DriverManagerRB.setDriver();
+        WebDriver driver = DriverManagerRB.getDriver();
 
         SearchTrainsPage searchPage = setup(driver);
         ResultsPage resultsPage = new ResultsPage(driver);
@@ -128,7 +128,7 @@ public class ExcelDrivenTest {
             Assert.assertTrue(resultsPage.areResultsDisplayed());
 
         } finally {
-            DriverManager.quitDriver();
+            DriverManagerRB.quitDriver();
         }
     }
 
@@ -137,8 +137,8 @@ public class ExcelDrivenTest {
                                   String invalidDest)
             throws InterruptedException {
 
-        DriverManager.setDriver();
-        WebDriver driver = DriverManager.getDriver();
+        DriverManagerRB.setDriver();
+        WebDriver driver = DriverManagerRB.getDriver();
 
         SearchTrainsPage searchPage = setup(driver);
 
@@ -151,7 +151,7 @@ public class ExcelDrivenTest {
             Assert.assertTrue(result);
 
         } finally {
-            DriverManager.quitDriver();
+            DriverManagerRB.quitDriver();
         }
     }
 

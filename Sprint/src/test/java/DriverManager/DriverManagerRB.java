@@ -1,9 +1,9 @@
-package Hooks;
+package DriverManager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class DriverManager {
+public class DriverManagerRB {
 
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 

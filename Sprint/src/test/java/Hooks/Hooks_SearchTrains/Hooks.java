@@ -1,4 +1,4 @@
-package Hooks;
+package Hooks.Hooks_SearchTrains;
 
 import Context.ScenarioContext;
 import Pages.Trains.SearchTrainsPage;

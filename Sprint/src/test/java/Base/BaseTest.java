@@ -2,6 +2,9 @@ package Base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import DriverManager.DriverManagerAP;
+import DriverManager.DriverManagerRB;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -16,7 +19,7 @@ public class BaseTest {
             return;
         }
 
-        WebDriverManager.chromedriver().setup();
+        DriverManagerAP.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 

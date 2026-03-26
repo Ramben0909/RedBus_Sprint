@@ -1,10 +1,10 @@
-package utils;
+package Utils;
 
 import org.apache.poi.ss.usermodel.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class ExcelUtil {
+public class ExcelUtilAP {
 
     public static String[][] readExcel(String path, String sheetName) {
 
