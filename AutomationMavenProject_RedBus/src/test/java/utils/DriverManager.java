@@ -2,21 +2,16 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 
+// This class holds the WebDriver so all files can share one browser instance
 public class DriverManager {
 
-    // Each thread gets its own WebDriver — parallel safe
-    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+    private static WebDriver driver;
 
-    public static void setDriver(WebDriver driver) {
-        driverThreadLocal.set(driver);
+    public static void setDriver(WebDriver d) {
+        driver = d;
     }
 
     public static WebDriver getDriver() {
-        return driverThreadLocal.get();
-    }
-
-    // Call this after driver.quit() to prevent memory leaks
-    public static void removeDriver() {
-        driverThreadLocal.remove();
+        return driver;
     }
 }

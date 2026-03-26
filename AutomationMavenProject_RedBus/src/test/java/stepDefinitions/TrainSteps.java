@@ -9,8 +9,6 @@ import pages.TrainPage;
 import utils.DriverManager;
 
 import java.util.List;
-import utils.ExcelUtils;
-import java.util.List;
 
 public class TrainSteps {
 
@@ -26,22 +24,6 @@ public class TrainSteps {
         System.out.println("User is on RedBus Train Running Status page.");
     }
 
-    @Given("the test data is loaded from Excel sheet {string}")
-    public void loadTestDataFromExcel(String sheetName) {
-        List<String[]> rows = ExcelUtils.getSheetData(sheetName);
-
-        System.out.println("\n===== Excel Test Data: " + sheetName + " =====");
-        System.out.printf("%-20s %-8s %-25s%n", "trainInput", "tcId", "description");
-        System.out.println("-".repeat(55));
-
-        for (String[] row : rows) {
-            System.out.printf("%-20s %-8s %-25s%n", row[0], row[1], row[2]);
-        }
-
-        System.out.println("Total rows: " + rows.size());
-        Assert.assertTrue(rows.size() > 0, "Excel sheet is empty!");
-    }
-    
     // ── WHEN ──────────────────────────────────────────────────────────────────
 
     /**
