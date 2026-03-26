@@ -1,4 +1,4 @@
-package stepDefinitions.SearchResultsTrains;  // ← change this
+package Hooks.Hooks_SearchTrains;  // ← change this
 
 import Pages.Trains.SearchTrainsPage;
 import Pages.Trains.ResultsPage;
