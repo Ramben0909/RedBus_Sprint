@@ -1,6 +1,6 @@
 package stepDefinitions.StepDefinations_SDC;
 
-import Base.Hooks_SDC.Hooks;
+import Hooks.Hooks_SDC.Hooks;
 import Pages.Pages_SDC.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

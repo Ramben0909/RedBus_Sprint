@@ -16,9 +16,9 @@ public class JourneySteps {
         ctx.searchPage.openCalendar();
     }
 
-    @When("User selects today's date")
-    public void user_selects_today_date() throws InterruptedException {
-        ctx.searchPage.selectTodayDate();
+    @When("User selects {string} as journey date")
+    public void user_selects_date(String date) throws InterruptedException {
+        ctx.searchPage.selectDate(date);
     }
 
     @Then("Today's date should be selected successfully")
