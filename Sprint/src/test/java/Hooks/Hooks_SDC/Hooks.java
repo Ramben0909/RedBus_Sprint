@@ -1,4 +1,4 @@
-package Base.Hooks_SDC;
+package Hooks.Hooks_SDC;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
