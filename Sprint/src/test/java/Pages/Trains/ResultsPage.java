@@ -10,7 +10,7 @@ import java.util.List;
 public class ResultsPage {
 
     private final WebDriver driver;
-    private final WebDriverWait wait;
+    public final WebDriverWait wait;
 
     private static final String CARD_XPATH = "//div[contains(@class,'srpCardWrap')]";
     private static final String RESULT_XPATH = "//div[contains(@id,'Normal')]";
@@ -55,14 +55,44 @@ public class ResultsPage {
     }
 
     public List<String> getArrivalTimesText(int limit) {
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(RESULT_XPATH), 0));
-        List<WebElement> trains = driver.findElements(By.xpath(RESULT_XPATH));
-        List<String> times = new java.util.ArrayList<>();
-        for (int i = 0; i < Math.min(limit, trains.size()); i++) {
-            WebElement el = trains.get(i).findElement(
-                By.xpath(".//div[contains(@class,'arrival')]//span[contains(@class,'time')]"));
-            times.add(el.getText().trim());
+        // wait for page to settle after sort click
+        try { Thread.sleep(3000); } catch (InterruptedException e) { e.printStackTrace(); }
+
+        // wait for ANY train card to appear first
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
+            By.xpath("//div[contains(@class,'srpCardWrap')]"), 0));
+
+        // now try to find the result divs — try both possible xpaths
+        List<WebElement> trains = driver.findElements(By.xpath("//div[contains(@id,'Normal')]"));
+
+        if (trains.isEmpty()) {
+            // fallback xpath — sometimes redbus uses different container after sort
+            trains = driver.findElements(
+                By.xpath("//div[contains(@class,'srpCardWrap')]"));
+            System.out.println("Using fallback xpath, found: " + trains.size());
         }
+
+        List<String> times = new java.util.ArrayList<>();
+
+        for (int i = 0; i < Math.min(limit, trains.size()); i++) {
+            try {
+                WebElement el = trains.get(i).findElement(
+                    By.xpath(".//div[contains(@class,'arrival')]//span[contains(@class,'time')]"));
+                String time = el.getText().trim();
+                if (!time.isEmpty()) {
+                    times.add(time);
+                    System.out.println("Arrival time " + (i+1) + ": " + time);
+                }
+            } catch (Exception e) {
+                System.out.println("Skipping card " + (i+1) + " — no arrival time found");
+            }
+        }
+
+        if (times.isEmpty()) {
+            throw new RuntimeException(
+                "No arrival times found after sort — check arrival time xpath");
+        }
+
         return times;
     }
 

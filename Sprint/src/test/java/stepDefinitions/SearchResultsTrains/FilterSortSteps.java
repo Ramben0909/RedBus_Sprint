@@ -1,6 +1,10 @@
 package stepDefinitions.SearchResultsTrains;
 
 import io.cucumber.java.en.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -44,10 +48,16 @@ public class FilterSortSteps {
     }
 
     // ── Sort by arrival ────────────────────────────────────────────────────────
-
+    
     @And("User sorts by Arrival Time")
-    public void sort_by_arrival_time() throws InterruptedException {
-        ctx.filterSortPage.sortByArrivalTime();
+    public void sortByArrivalTime() throws InterruptedException {
+        
+		WebElement arrivalBtn = ctx.resultsPage.wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.xpath("//button[.//text()[contains(.,'Arrival')]]")));
+        arrivalBtn.click();
+        System.out.println("Clicked sort by arrival");
+        Thread.sleep(4000); // results reload after sort — give it time
     }
 
     @Then("Trains are sorted in ascendeing order of arrival time")

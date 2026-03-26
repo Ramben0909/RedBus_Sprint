@@ -1,4 +1,4 @@
-package driver;
+package DriverManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class DriverManager {
+public class DriverManagerAP {
 
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
