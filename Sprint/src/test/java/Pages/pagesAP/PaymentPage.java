@@ -1,4 +1,4 @@
-package pages;
+package Pages.pagesAP;
 
 import org.openqa.selenium.*;
 

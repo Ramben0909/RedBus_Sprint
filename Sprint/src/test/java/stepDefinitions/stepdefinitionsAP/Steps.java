@@ -1,9 +1,9 @@
-package stepdefinitions;
+package stepDefinitions.stepdefinitionsAP;
 
-import driver.DriverManager;
+import Driver.DriverAP.*;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
-import pages.*;
+import Pages.pagesAP.*;
 
 public class Steps {
 
