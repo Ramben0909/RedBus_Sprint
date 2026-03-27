@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -25,97 +26,164 @@ public class RedBusHomePage {
 	@FindBy(xpath = "//button[@aria-label='Search buses']")
 	private WebElement searchButton;
 
+	/**
+	 * Constructor to initialize the WebDriver, WebDriverWait, and PageFactory elements.
+	 */
 	public RedBusHomePage(WebDriver driver) {
 		this.driver = driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		PageFactory.initElements(driver, this);
+		Assert.assertNotNull(this.driver, "WebDriver instance should not be null");
 	}
 
+	/**
+	 * Navigates to the RedBus homepage and asserts the URL.
+	 */
 	public void openHomepage() {
 		driver.get("https://www.redbus.in");
+		Assert.assertTrue(driver.getCurrentUrl().contains("redbus"), "Failed to navigate to RedBus homepage");
 	}
 
+	/**
+	 * Waits for the source input field, clears it, and enters the specified city.
+	 */
 	public void enterSource(String city) {
 		WebElement src = wait.until(ExpectedConditions.elementToBeClickable(srcInput));
+		Assert.assertTrue(src.isDisplayed(), "Source input field is not displayed");
 		src.clear();
 		src.sendKeys(city);
 		sleep(1500);
 	}
 
+	/**
+	 * Selects a specific city from the source auto-suggestion dropdown.
+	 */
 	public void selectSourceSuggestion(String city) {
-		String xpath = "//div[contains(text(),'" + city + "')]";
-		WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
-		suggestion.click();
-	}
+        sleep(1000); // Increased buffer for parallel runs
+        String xpath = "//div[contains(text(), '" + city + "')]";
+        WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+        Assert.assertTrue(suggestion.isDisplayed(), "Source suggestion is not displayed for city: " + city);
+        suggestion.click();
+        sleep(600);
+    }
 
+	/**
+	 * Waits for the destination input field, clears it, and enters the specified city.
+	 */
 	public void enterDestination(String city) {
 		WebElement dest = wait.until(ExpectedConditions.elementToBeClickable(destInput));
+		Assert.assertTrue(dest.isDisplayed(), "Destination input field is not displayed");
 		dest.clear();
 		dest.sendKeys(city);
 		sleep(1500);
 	}
 
+	/**
+	 * Selects a specific city from the destination auto-suggestion dropdown.
+	 */
 	public void selectDestinationSuggestion(String city) {
-		String xpath = "//div[contains(text(),'" + city + "')]";
-		WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
-		suggestion.click();
-	}
+        sleep(1000);
+        String xpath = "//div[contains(text(), '" + city + "')]";
+        WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+        Assert.assertTrue(suggestion.isDisplayed(), "Destination suggestion is not displayed for city: " + city);
+        suggestion.click();
+        sleep(600);
+    }
 
+	/**
+	 * Clicks on the 'Search buses' button.
+	 */
 	public void clickSearchButton() {
 		WebElement search = wait.until(ExpectedConditions.elementToBeClickable(searchButton));
+		Assert.assertTrue(search.isEnabled(), "Search button is not enabled");
 		search.click();
 	}
 
+	/**
+	 * Attempts to close any promotional popup if it appears on the screen.
+	 */
 	public void closePopupIfAppears() {
 		try {
-			Thread.sleep(2500);
+			sleep(2500);
 			WebElement closeBtn = driver.findElement(By.xpath("//button[@aria-label='Close']"));
+			Assert.assertTrue(closeBtn.isDisplayed(), "Close button for popup is not displayed");
 			closeBtn.click();
 		} catch (Exception e) {
 			// Popup did not appear
+			Assert.assertTrue(true, "Popup did not appear, continuing execution");
 		}
 	}
 
+	/**
+	 * Retrieves and returns the text of an error message on the screen.
+	 */
 	public String getErrorMessageText() {
-		WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("message___22fabd")));
+		WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'message___22fabd')]")));
+		Assert.assertTrue(error.isDisplayed(), "Error message element is not visible");
 		return error.getText().trim();
 	}
 
+	/**
+	 * Clicks on the date input wrapper to open the calendar.
+	 */
 	public void clickDateField() {
 		WebElement dateWrapper = wait
-				.until(ExpectedConditions.elementToBeClickable(By.className("dateInputWrapper___dfa43b")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class,\"dateInputWrapper\")]")));
+		Assert.assertTrue(dateWrapper.isDisplayed(), "Date input field wrapper is not displayed");
 		dateWrapper.click();
 	}
 
+	/**
+	 * Selects a specific day from the opened calendar.
+	 */
 	public void selectDate(String day) {
 		String xpath = "//span[text()='" + day + "']";
 		WebElement dateEl = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+		Assert.assertTrue(dateEl.isDisplayed(), "Date element is not displayed for day: " + day);
 		dateEl.click();
 	}
 
+	/**
+	 * Clears the currently selected source location using the clear button.
+	 */
 	public void removeSource() {
 		WebElement srcContainer = wait.until(
-				ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class=\"srcDestWrapper___9196c8 \"])[1]")));
+				ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,\"srcDestWrapper\")])[1]")));
+		Assert.assertTrue(srcContainer.isDisplayed(), "Source container is not displayed");
 		srcContainer.click();
 		srcInput.click();
 		WebElement cross = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@aria-label=\"Clear input\"]")));
+		Assert.assertTrue(cross.isDisplayed(), "Clear input cross icon is not displayed");
 		cross.click();
 		closeAnyDropdown();
 	}
 
+	/**
+	 * Checks if the source input container is empty.
+	 */
 	public boolean isSourceCleared() {
 		WebElement srcContainer = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.xpath("(//div[@class=\"srcDestWrapper___9196c8 \"])[1]")));
+				.presenceOfElementLocated(By.xpath("(//div[contains(@class,\"srcDestWrapper\")])[1]")));
+		Assert.assertNotNull(srcContainer, "Source container element could not be found");
 		return srcContainer.getText().trim().isEmpty();
 	}
 
+	/**
+	 * Sends an ESCAPE key press to the body to close any active dropdowns.
+	 */
 	public void closeAnyDropdown() {
-		driver.findElement(By.tagName("body")).sendKeys(Keys.ESCAPE);
+		WebElement body = driver.findElement(By.tagName("body"));
+		Assert.assertNotNull(body, "Body element not found");
+		body.sendKeys(Keys.ESCAPE);
 		sleep(1000);
 	}
 
+	/**
+	 * Helper method to pause thread execution for a given number of milliseconds.
+	 */
 	private void sleep(int millis) {
+		Assert.assertTrue(millis >= 0, "Sleep duration must be positive");
 		try {
 			Thread.sleep(millis);
 		} catch (InterruptedException e) {

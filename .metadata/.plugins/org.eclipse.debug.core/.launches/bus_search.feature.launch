@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="cucumber.eclipse.java.launching.localCucumberFeature">
+    <stringAttribute key="cucumber feature" value="src/test/resources/FeatureFiles/Features_SDC/bus_search.feature"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Sprint"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dcucumber.publish.quiet=true"/>
+    <stringAttribute key="org.eclipse.unittest.ui.TEST_VIEW_SUPPPORT" value="io.cucumber.eclipse.editor.testresults"/>
+</launchConfiguration>

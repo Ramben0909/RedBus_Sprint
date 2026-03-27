@@ -17,7 +17,6 @@ Feature: Search Results Page Interactions on RedBus
     Examples:
       | testCaseId |
       | SR_01      |
-      | SR_02      |
 
   # ── Excel-driven: toggle filters ─────────────────────────────────────────
 

@@ -14,6 +14,7 @@ public class Hooks {
     // ThreadLocal ensures thread safety for parallel execution
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
+
     // Getter to access the driver in step definitions
     public static WebDriver getDriver() {
         return driver.get();
