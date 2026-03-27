@@ -9,25 +9,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Utility to read test data from Excel (.xlsx) files.
- *
- * Usage:
- *   List<Map<String,String>> rows = ExcelDataReader.getSheetData("BusSearch");
- *   String source = rows.get(0).get("source");
- */
+
 public class ExcelDataReaderSDC {
 
     // Path relative to project root — place redbus_test_data.xlsx in src/test/resources/testdata/
     private static final String FILE_PATH = "src/test/resources/Data/redbus_test_data_sdc.xlsx";
 
-    /**
-     * Reads all rows from the given sheet and returns them as a list of maps.
-     * Map keys = header column names (row 1), values = cell values as Strings.
-     *
-     * @param sheetName  exact name of the Excel sheet tab
-     * @return           list of row data maps (one map per data row, header row excluded)
-     */
+   
     public static List<Map<String, String>> getSheetData(String sheetName) {
         List<Map<String, String>> data = new ArrayList<>();
 

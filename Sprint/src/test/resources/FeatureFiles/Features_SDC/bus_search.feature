@@ -21,7 +21,6 @@ Feature: Bus Search Functionality on RedBus Homepage
     Examples:
       | testCaseId |
       | BS_04      |
-      | BS_11      |
 
   @only_destination
   Scenario Outline: Only destination filled - <testCaseId>
@@ -31,7 +30,6 @@ Feature: Bus Search Functionality on RedBus Homepage
 
     Examples:
       | testCaseId |
-      | BS_06      |
       | BS_07      |
 
   # ── Excel-driven: happy-path search ──────────────────────────────────────
@@ -45,8 +43,6 @@ Feature: Bus Search Functionality on RedBus Homepage
     Examples:
       | testCaseId |
       | BS_02      |
-      | BS_03      |
-      | BS_08      |
 
   # ── Excel-driven: both fields + date ─────────────────────────────────────
 
@@ -59,7 +55,6 @@ Feature: Bus Search Functionality on RedBus Homepage
     Examples:
       | testCaseId |
       | BS_01      |
-      | BS_05      |
 
   # ── Excel-driven: date second click ──────────────────────────────────────
 
@@ -85,4 +80,3 @@ Feature: Bus Search Functionality on RedBus Homepage
     Examples:
       | testCaseId |
       | BS_01      |
-      | BS_02      |

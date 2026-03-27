@@ -3,31 +3,30 @@ package stepDefinitions.StepDefinations_SDC;
 import Hooks.Hooks_SDC.Hooks;
 import Pages.Pages_SDC.RedBusHomePage;
 import Pages.Pages_SDC.RedBusSearchResultsPage;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
+
 import java.util.Map;
 import Utils.ExcelDataReaderSDC;
 
 public class RedBusStepDefinitions {
 
-    private RedBusHomePage homePage;
-    private RedBusSearchResultsPage resultsPage;
-
+    // No instance fields anymore → fully thread-safe
 
     // ── Homepage navigation ─────────────────────────────────────────────────
-
     @Given("the user is on the RedBus homepage")
     public void userIsOnRedBusHomepage() {
-        homePage = new RedBusHomePage(Hooks.getDriver()); 
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         homePage.openHomepage();
     }
 
     // ── Source / Destination ────────────────────────────────────────────────
-
     @When("the user fills source as {string} and selects the suggestion")
     public void fillSourceAndSelect(String city) {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         homePage.enterSource(city);
         homePage.selectSourceSuggestion(city);
         homePage.closeAnyDropdown();
@@ -35,16 +34,17 @@ public class RedBusStepDefinitions {
 
     @When("the user fills destination as {string} and selects the suggestion")
     public void fillDestinationAndSelect(String city) {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         homePage.enterDestination(city);
         homePage.selectDestinationSuggestion(city);
         homePage.closeAnyDropdown();
     }
 
-    // ── Excel-driven: both source + destination from sheet ──────────────────
-
+    // ── Excel-driven search ─────────────────────────────────────────────────
     @When("the user searches with data from excel row {string}")
     public void searchWithExcelRow(String testCaseId) {
         Map<String, String> row = getRowById("BusSearch", testCaseId);
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
 
         String source = row.get("source");
         String destination = row.get("destination");
@@ -68,18 +68,17 @@ public class RedBusStepDefinitions {
         }
     }
 
-    // ── Search button ───────────────────────────────────────────────────────
-
     @When("the user clicks the search buses button")
     public void clickSearchBuses() {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         homePage.clickSearchButton();
         homePage.closePopupIfAppears();
     }
 
     // ── Assertions ──────────────────────────────────────────────────────────
-
     @Then("the error message {string} is displayed")
     public void verifyExactErrorMessage(String expected) {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         String actual = homePage.getErrorMessageText();
         Assert.assertTrue(actual.contains(expected));
         System.out.println("Error verified: " + actual);
@@ -87,31 +86,34 @@ public class RedBusStepDefinitions {
 
     @Then("the error message containing {string} is displayed")
     public void verifyErrorContains(String keyword) {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         String actual = homePage.getErrorMessageText();
         Assert.assertTrue(actual.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Then("the user is navigated to the search results page")
     public void navigatedToResultsPage() {
-        resultsPage = new RedBusSearchResultsPage(Hooks.getDriver()); 
+        RedBusSearchResultsPage resultsPage = new RedBusSearchResultsPage(Hooks.getDriver());
         resultsPage.waitForPageLoad();
         System.out.println("Navigated to Search Results page");
     }
 
-    // ── Date steps (Kept intentional as requested) ──────────────────────────
-
+    // ── Date steps ──────────────────────────────────────────────────────────
     @When("the user clicks the date field")
     public void clickDateField() {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         homePage.clickDateField();
     }
 
     @When("the user clicks the date field again")
     public void clickDateFieldAgain() {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         homePage.clickDateField();
     }
 
     @When("the user selects date {string}")
     public void selectDate(String day) {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         homePage.selectDate(day);
     }
 
@@ -121,33 +123,29 @@ public class RedBusStepDefinitions {
     }
 
     // ── Source removal ──────────────────────────────────────────────────────
-
     @When("the user removes the source")
     public void removeTheSource() {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         homePage.removeSource();
     }
 
     @Then("the source field is cleared")
     public void sourceFieldIsCleared() {
+        RedBusHomePage homePage = new RedBusHomePage(Hooks.getDriver());
         Assert.assertTrue(homePage.isSourceCleared(), "Source field is NOT cleared!");
         System.out.println("Source successfully removed");
     }
 
-    // ── Filter steps (Excel Driven) ─────────────────────────────────────────
-
+    // ── Filter / Time / Sort steps  ───────
     @When("the user applies filters from excel row {string}")
     public void applyFiltersFromExcel(String testCaseId) {
+        RedBusSearchResultsPage resultsPage = new RedBusSearchResultsPage(Hooks.getDriver());
         Map<String, String> row = getRowById("SearchResults", testCaseId);
-
         String filter1 = row.get("filter1");
         String filter2 = row.get("filter2");
 
-        if (filter1 != null && !filter1.isEmpty()) {
-            resultsPage.clickFilter(filter1);
-        }
-        if (filter2 != null && !filter2.isEmpty()) {
-            resultsPage.clickFilter(filter2);
-        }
+        if (filter1 != null && !filter1.isEmpty()) resultsPage.clickFilter(filter1);
+        if (filter2 != null && !filter2.isEmpty()) resultsPage.clickFilter(filter2);
     }
 
     @Then("the filters from excel row {string} are successfully applied")
@@ -162,29 +160,29 @@ public class RedBusStepDefinitions {
         System.out.println("Filters: " + row.get("filter1") + " & " + row.get("filter2") + " toggled ON and OFF successfully");
     }
 
-    // ── Time Filter steps (Excel Driven) ────────────────────────────────────
-
     @When("the user clicks the time dropdown")
     public void clickTimeDropdown() {
+        RedBusSearchResultsPage resultsPage = new RedBusSearchResultsPage(Hooks.getDriver());
         resultsPage.clickDTDropdown();
     }
 
     @When("the user selects time filter from excel row {string}")
     public void selectTimeFilterFromExcel(String testCaseId) {
+        RedBusSearchResultsPage resultsPage = new RedBusSearchResultsPage(Hooks.getDriver());
         Map<String, String> row = getRowById("SearchResults", testCaseId);
         String timeSlot = row.get("timeSlot");
         if (timeSlot != null && !timeSlot.isEmpty()) {
-            resultsPage.clickDTDropdown();
             resultsPage.selectTimeFilter(timeSlot);
         }
     }
 
     @When("the user clicks the time filter from excel row {string} again to deselect")
     public void deselectTimeFilterFromExcel(String testCaseId) {
+        RedBusSearchResultsPage resultsPage = new RedBusSearchResultsPage(Hooks.getDriver());
         Map<String, String> row = getRowById("SearchResults", testCaseId);
         String timeSlot = row.get("timeSlot");
         if (timeSlot != null && !timeSlot.isEmpty()) {
-            resultsPage.selectTimeFilter(timeSlot); // Clicks again to toggle off
+            resultsPage.selectTimeFilter(timeSlot);
         }
     }
 
@@ -200,23 +198,21 @@ public class RedBusStepDefinitions {
         System.out.println(row.get("timeSlot") + " filter deselected successfully");
     }
 
-    // ── Sort steps (Excel Driven) ───────────────────────────────────────────
-
     @When("the user clicks sort by from excel row {string}")
     public void clickSortByFromExcel(String testCaseId) {
+        RedBusSearchResultsPage resultsPage = new RedBusSearchResultsPage(Hooks.getDriver());
         Map<String, String> row = getRowById("SearchResults", testCaseId);
         String sortOption = row.get("sort");
-        
         if (sortOption != null && !sortOption.isEmpty()) {
-            resultsPage.clickSortBy(sortOption); 
+            resultsPage.clickSortBy(sortOption);
         }
     }
 
     @When("the user clicks sort by from excel row {string} again")
     public void clickSortByAgainFromExcel(String testCaseId) {
+        RedBusSearchResultsPage resultsPage = new RedBusSearchResultsPage(Hooks.getDriver());
         Map<String, String> row = getRowById("SearchResults", testCaseId);
         String sortOption = row.get("sort");
-        
         if (sortOption != null && !sortOption.isEmpty()) {
             resultsPage.clickSortBy(sortOption);
         }
@@ -229,7 +225,6 @@ public class RedBusStepDefinitions {
     }
 
     // ── Private helper ──────────────────────────────────────────────────────
-
     private Map<String, String> getRowById(String sheetName, String testCaseId) {
         return ExcelDataReaderSDC.getSheetData(sheetName)
                 .stream()
@@ -237,5 +232,12 @@ public class RedBusStepDefinitions {
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException(
                         "No row with testCaseId='" + testCaseId + "' found in sheet: " + sheetName));
+    }
+
+    // Clean up ThreadLocal references after each scenario (good practice)
+    @After
+    public void tearDownStepDefs() {
+        // No fields to clean now, but kept for future extensibility
+        System.out.println("=== Step Definitions cleaned for thread ===");
     }
 }
