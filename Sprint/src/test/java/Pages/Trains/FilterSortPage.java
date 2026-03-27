@@ -27,7 +27,7 @@ public class FilterSortPage {
         WebElement clearBtn = wait.until(
             ExpectedConditions.elementToBeClickable(
                 By.xpath("//button[@aria-label='Clear all filters']")));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", clearBtn);
+        clearBtn.click();
         Thread.sleep(2000);
     }
 

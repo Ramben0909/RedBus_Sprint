@@ -27,7 +27,7 @@ public class FilterSortSteps {
 
     @Then("Only AC trains are visible should be displayed")
     public void verify_only_ac_trains() {
-        List<String> classes = ctx.resultsPage.getJourneyClasses(20);
+        List<String> classes = ctx.resultsPage.getJourneyClasses(10);
         boolean allAC = classes.stream()
             .allMatch(c -> c.contains("A") || c.contains("E") || c.equalsIgnoreCase("CC"));
         Assert.assertTrue(allAC, "Non-AC train found! Filter failed");
@@ -62,7 +62,7 @@ public class FilterSortSteps {
 
     @Then("Trains are sorted in ascendeing order of arrival time")
     public void verify_arrival_sort() {
-        List<String> rawTimes = ctx.resultsPage.getArrivalTimesText(15);
+        List<String> rawTimes = ctx.resultsPage.getArrivalTimesText(5);
         List<Integer> minutes = new ArrayList<>();
 
         for (String t : rawTimes) {

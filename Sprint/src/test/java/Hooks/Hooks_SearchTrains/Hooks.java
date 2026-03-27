@@ -1,4 +1,4 @@
-package Hooks.Hooks_SearchTrains;
+package Hooks;
 
 import Context.ScenarioContext;
 import Pages.Trains.SearchTrainsPage;
@@ -6,9 +6,7 @@ import Pages.Trains.ResultsPage;
 import Pages.Trains.FilterSortPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
+import org.openqa.selenium.WebDriver;
 
 public class Hooks {
 
@@ -20,10 +18,9 @@ public class Hooks {
 
     @Before
     public void setUp() {
-
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        // browser name already set per thread by BrowserParameterListener
+        DriverManager.initDriver();
+        WebDriver driver = DriverManager.getDriver();
 
         ctx.searchPage     = new SearchTrainsPage(driver);
         ctx.resultsPage    = new ResultsPage(driver);
@@ -32,8 +29,6 @@ public class Hooks {
 
     @After
     public void tearDown() {
-        if (ctx.searchPage != null && ctx.searchPage.driver != null) {
-            ctx.searchPage.driver.quit();
-        }
+        DriverManager.quitDriver();
     }
 }

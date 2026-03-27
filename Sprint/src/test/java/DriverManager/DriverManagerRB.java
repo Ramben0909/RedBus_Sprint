@@ -1,14 +1,46 @@
-package DriverManager;
+package Hooks;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import java.time.Duration;
 
-public class DriverManagerRB {
+public class DriverManager {
 
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> driver      = new ThreadLocal<>();
+    private static ThreadLocal<String>    browserName = new ThreadLocal<>();
 
-    public static void setDriver() {
-        driver.set(new ChromeDriver());
+    public static void setBrowserName(String browser) {
+        browserName.set(browser);
+    }
+
+    public static String getBrowserName() {
+        String b = browserName.get();
+        return (b != null) ? b : "chrome"; // default chrome
+    }
+
+    public static void initDriver() {
+        String browser = getBrowserName();
+        System.out.println("Initializing browser: " + browser);
+        WebDriver d;
+
+        switch (browser.toLowerCase()) {
+            case "edge":
+                d = new EdgeDriver();
+                break;
+            case "firefox":
+                d = new FirefoxDriver();
+                break;
+            case "chrome":
+            default:
+                d = new ChromeDriver();
+                break;
+        }
+
+        d.manage().window().maximize();
+        d.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.set(d);
     }
 
     public static WebDriver getDriver() {
@@ -16,7 +48,10 @@ public class DriverManagerRB {
     }
 
     public static void quitDriver() {
-        driver.get().quit();
-        driver.remove();
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
+        browserName.remove();
     }
 }

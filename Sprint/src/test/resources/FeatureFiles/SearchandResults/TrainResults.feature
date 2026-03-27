@@ -8,7 +8,7 @@ Feature: Train Results Functionality (redRail)
     And User enters "New Delhi" in To field
     And User selects "New Delhi" from suggestions
     And User opens Date of Journey calendar
-    And User selects today's date
+    And User selects "today" as journey date
     And User clicks on Search Trains button
     And User selects AC Filter
     Then Only AC trains are visible should be displayed
@@ -21,7 +21,7 @@ Feature: Train Results Functionality (redRail)
     And User enters "New Delhi" in To field
     And User selects "New Delhi" from suggestions
     And User opens Date of Journey calendar
-    And User selects today's date
+    And User selects "today" as journey date
     And User clicks on Search Trains button
     And User selects AC Filter
     And User clears all filters
@@ -35,7 +35,7 @@ Feature: Train Results Functionality (redRail)
     And User enters "New Delhi" in To field
     And User selects "New Delhi" from suggestions
     And User opens Date of Journey calendar
-    And User selects today's date
+    And User selects "today" as journey date
     And User clicks on Search Trains button
     And User selects first available train
     Then Free cancellation should be displayed
@@ -48,7 +48,7 @@ Feature: Train Results Functionality (redRail)
     And User enters "New Delhi" in To field
     And User selects "New Delhi" from suggestions
     And User opens Date of Journey calendar
-    And User selects today's date
+    And User selects "today" as journey date
     And User clicks on Search Trains button
     And User sorts by Arrival Time
     Then Trains are sorted in ascendeing order of arrival time
