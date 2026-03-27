@@ -37,21 +37,21 @@
     <version>4.13.2</version>
     <scope>test</scope>
 </dependency>
-<<<<<<< HEAD
+
  <!-- Apache POI for Excel (.xls) -->
     <dependency>
         <groupId>org.apache.poi</groupId>
         <artifactId>poi</artifactId>
         <version>5.2.5</version>
     </dependency>
-=======
+
 <!--  poi-ooxml: REQUIRED for XSSFWorkbook to read .xlsx files  -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.2.5</version>
 		</dependency>
->>>>>>> 6ea8fa5885b501de90bf4436f00721f326837eb7
+
 
     <!-- Apache POI for Excel (.xlsx) -->
     <dependency>

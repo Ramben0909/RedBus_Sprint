@@ -1,6 +1,6 @@
-package runner;
+package testRunner.runnerAP;
 
-import driver.DriverManager;
+import DriverManager.DriverManagerAP;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterClass;
@@ -14,7 +14,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 
     @AfterClass
     public void tearDown() {
-        DriverManager.quitDriver();
+        DriverManagerAP.quitDriver();
     }
 }
 

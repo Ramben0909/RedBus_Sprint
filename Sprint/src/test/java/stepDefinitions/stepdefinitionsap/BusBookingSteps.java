@@ -1,13 +1,13 @@
-package stepdefinitions;
+package stepDefinitions.stepdefinitionsAP;
 
-import driver.DriverManager;
+import DriverManager.DriverManagerAP;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
-import pages.*;
-import utils.ExcelUtil;
+import Pages.pagesAP.*;
+import Utils.utilsAP.*;
 
 public class BusBookingSteps {
 
@@ -23,7 +23,7 @@ public class BusBookingSteps {
 	// precondition
 	@Given("user opens redbus")
 	public void openSite() throws Exception {
-		driver = DriverManager.getDriver();
+		driver = DriverManagerAP.getDriver();
 		home = new HomePage(driver);
 		home.openSite();
 		Thread.sleep(5000);
