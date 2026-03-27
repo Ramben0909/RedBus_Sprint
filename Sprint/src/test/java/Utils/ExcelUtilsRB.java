@@ -1,0 +1,42 @@
+package utils;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ExcelUtils {
+
+    @SuppressWarnings("resource")
+	public static List<String[]> getTestData(String filePath, 
+                                              String sheetName) throws IOException {
+        List<String[]> data = new ArrayList<>();
+
+        FileInputStream fis = new FileInputStream(filePath);
+        Workbook workbook   = new XSSFWorkbook(fis);
+        Sheet sheet         = workbook.getSheet(sheetName);
+
+        if (sheet == null) {
+            throw new RuntimeException("Sheet not found: " + sheetName);
+        }
+
+        for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
+            if (row == null) continue;
+
+            String[] rowData = new String[row.getLastCellNum()];
+            for (int j = 0; j < row.getLastCellNum(); j++) {
+                Cell cell  = row.getCell(j);
+                rowData[j] = cell == null ? "" : cell.toString().trim();
+            }
+            data.add(rowData);
+        }
+
+        workbook.close();
+        fis.close();
+        return data;
+    }
+}

@@ -1,6 +1,7 @@
-package Pages.pagesAP;
+package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
 
 public class PassengerPage {
 
@@ -8,17 +9,18 @@ public class PassengerPage {
 
     public PassengerPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    public void enterDetails(String name, String age) {
-
+    public void enterName(String name) {
         WebElement nameField = driver.findElement(By.xpath("//input[@placeholder='Enter your Name']"));
-        WebElement ageField = driver.findElement(By.xpath("//input[@placeholder='Enter Age']"));
-
         nameField.clear();
-        ageField.clear();
-
         nameField.sendKeys(name);
+    }
+
+    public void enterAge(String age) {
+        WebElement ageField = driver.findElement(By.xpath("//input[@placeholder='Enter Age']"));
+        ageField.clear();
         ageField.sendKeys(age);
     }
 

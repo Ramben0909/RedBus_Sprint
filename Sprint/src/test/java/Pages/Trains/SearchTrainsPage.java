@@ -41,20 +41,36 @@ public class SearchTrainsPage {
 
     public void selectSource(String input, String targetName) throws InterruptedException {
         src_wrapper.click();
-        Thread.sleep(1000);
-        driver.findElement(By.id("srcDest")).sendKeys(input);
+
+        WebElement inputBox = driver.findElement(By.id("srcDest"));
+        inputBox.sendKeys(input);
         Thread.sleep(2000);
-        clickSuggestion("//div[@id='src-suggestions']//div[contains(@class,'listItem')]", targetName);
+
+        // wait for suggestions to appear
+        String xpath = "//div[@id='src-suggestions']//div[contains(@class,'listItem')]";
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(xpath), 0));
+
+        clickSuggestion(xpath, targetName);
+
         Thread.sleep(1000);
     }
 
     public void selectDestination(String input, String targetName) throws InterruptedException {
+
         dst_wrapper.click();
-        Thread.sleep(1000);
-        driver.findElement(By.id("srcDest")).sendKeys(input);
+
+        WebElement inputBox = driver.findElement(By.id("srcDest"));
+        inputBox.sendKeys(input);
         Thread.sleep(2000);
-        clickSuggestion("//div[@id='dst-suggestions']//div[contains(@class,'listItem')]", targetName);
-        Thread.sleep(1000);
+
+        String xpath = "//div[@id='dst-suggestions']//div[contains(@class,'listItem')]";
+
+        // wait until suggestions appear
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(xpath), 0));
+
+        clickSuggestion(xpath, targetName);
+
+        Thread.sleep(1000); // you can keep this for now if needed
     }
 
     public void clickSearch() {
@@ -92,31 +108,56 @@ public class SearchTrainsPage {
         Thread.sleep(1000);
     }
 
-    public void selectTodayDate() throws InterruptedException {
-        String todayDay = String.valueOf(java.time.LocalDate.now().getDayOfMonth() + 2);
+    public void selectDate(String dateStr) throws InterruptedException {
+        // dateStr format: "today", "tomorrow", or "DD" like "28"
+        int dayNumber;
+
+        if (dateStr.equalsIgnoreCase("today")) {
+            dayNumber = java.time.LocalDate.now().getDayOfMonth() + 2;
+        } else if (dateStr.equalsIgnoreCase("tomorrow")) {
+            dayNumber = java.time.LocalDate.now().getDayOfMonth() + 3;
+        } else {
+            dayNumber = Integer.parseInt(dateStr) + 2;
+        }
+
+        String day = String.valueOf(dayNumber);
         String dateXpath = "//li[contains(@class,'dateItem')]//div//div//span";
         Thread.sleep(2000);
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(dateXpath)));
 
         for (WebElement date : driver.findElements(By.xpath(dateXpath))) {
-            if (date.getText().trim().equals(todayDay) && date.isDisplayed()) {
+            if (date.getText().trim().equals(day) && date.isDisplayed()) {
                 date.click();
+                System.out.println("Clicked date: " + day);
                 return;
             }
         }
-        throw new RuntimeException("Today's date not found in calendar");
+        throw new RuntimeException("Date not found in calendar: " + day);
     }
 
     // ── private helpers ────────────────────────────────────────────────────────
 
     private void clickSuggestion(String containerXpath, String targetName) {
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(containerXpath), 0));
-        for (WebElement el : driver.findElements(By.xpath(containerXpath))) {
-            if (el.getText().trim().split("\n")[0].trim().equalsIgnoreCase(targetName)) {
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(containerXpath)));
+
+        List<WebElement> suggestions = driver.findElements(By.xpath(containerXpath));
+
+        for (WebElement el : suggestions) {
+            String text = el.getText().toLowerCase();
+
+            if (text.contains(targetName.toLowerCase())) {
                 el.click();
                 return;
             }
         }
+
+        // 🔥 DEBUG PRINT (VERY IMPORTANT)
+        System.out.println("Available suggestions:");
+        for (WebElement el : suggestions) {
+            System.out.println("→ " + el.getText());
+        }
+
         throw new RuntimeException("Suggestion not found: " + targetName);
     }
 }

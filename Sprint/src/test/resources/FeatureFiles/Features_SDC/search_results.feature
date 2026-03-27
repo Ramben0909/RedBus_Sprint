@@ -7,33 +7,61 @@ Feature: Search Results Page Interactions on RedBus
     And the user clicks the search buses button
     Then the user is navigated to the search results page
 
+  # ── Excel-driven: apply filters ───────────────────────────────────────────
+
   @filters
-  Scenario: Apply AC and SEATER filters
-    When the user applies the "AC" filter
-    And the user applies the "SEATER" filter
-    Then the filters are successfully applied
+  Scenario Outline: Apply bus type filters - <testCaseId>
+    When the user applies filters from excel row "<testCaseId>"
+    Then the filters from excel row "<testCaseId>" are successfully applied
+
+    Examples:
+      | testCaseId |
+      | SR_01      |
+      | SR_02      |
+
+  # ── Excel-driven: toggle filters ─────────────────────────────────────────
 
   @filter_toggle
-  Scenario: Toggle AC and SEATER filters on and off
-    When the user toggles the "AC" filter
-    And the user toggles the "SEATER" filter
-    Then the filters are successfully toggled
+  Scenario Outline: Toggle bus type filters on and off - <testCaseId>
+    When the user applies filters from excel row "<testCaseId>"
+    And the user applies filters from excel row "<testCaseId>"
+    Then the filters from excel row "<testCaseId>" are successfully toggled
+
+    Examples:
+      | testCaseId |
+      | SR_03      |
+
+  # ── Excel-driven: time filter select ─────────────────────────────────────
 
   @time_dropdown_select
-  Scenario: Select Afternoon from time dropdown
-    When the user clicks the time dropdown
-    And the user selects "Afternoon" time filter
-    Then the Afternoon filter is applied successfully
+  Scenario Outline: Select time slot from dropdown - <testCaseId>
+    When the user selects time filter from excel row "<testCaseId>"
+    Then the time filter from excel row "<testCaseId>" is applied successfully
+
+    Examples:
+      | testCaseId |
+      | SR_06      |
+
+  # ── Excel-driven: time filter deselect ───────────────────────────────────
 
   @time_dropdown_deselect
-  Scenario: Deselect Afternoon from time dropdown
-    When the user clicks the time dropdown
-    And the user selects "Afternoon" time filter
-    And the user clicks the "Afternoon" time filter again to deselect
-    Then the Afternoon filter is deselected successfully
+  Scenario Outline: Deselect time slot from dropdown - <testCaseId>
+    When the user selects time filter from excel row "<testCaseId>"
+    And the user clicks the time filter from excel row "<testCaseId>" again to deselect
+    Then the time filter from excel row "<testCaseId>" is deselected successfully
 
-  @sort_ratings
-  Scenario: Toggle Sort by Ratings
-    When the user clicks sort by Ratings
-    And the user clicks sort by Ratings again
-    Then the sort by Ratings is toggled successfully
+    Examples:
+      | testCaseId |
+      | SR_06      |
+
+  # ── Generalized Sort Scenarios (Excel Driven) ────────────────────────────
+
+  @sort_options
+  Scenario Outline: Toggle Sort by <testCaseId>
+    When the user clicks sort by from excel row "<testCaseId>"
+    And the user clicks sort by from excel row "<testCaseId>" again
+    Then the sort by from excel row "<testCaseId>" is toggled successfully
+    
+    Examples:
+      | testCaseId |
+      | SR_07      |

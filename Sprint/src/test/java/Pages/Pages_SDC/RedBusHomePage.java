@@ -68,7 +68,7 @@ public class RedBusHomePage {
 
 	public void closePopupIfAppears() {
 		try {
-			Thread.sleep(1500);
+			Thread.sleep(2500);
 			WebElement closeBtn = driver.findElement(By.xpath("//button[@aria-label='Close']"));
 			closeBtn.click();
 		} catch (Exception e) {
