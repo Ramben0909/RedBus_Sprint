@@ -3,52 +3,80 @@ Feature: Bus Search Functionality on RedBus Homepage
   Background:
     Given the user is on the RedBus homepage
 
+  # ── Static error scenarios (no Excel needed) ─────────────────────────────
+
   @both_empty
   Scenario: Both source and destination empty
     When the user clicks the search buses button
     Then the error message "Please enter source and destination" is displayed
 
+  # ── Excel-driven: only source / only destination ─────────────────────────
+
   @only_source
-  Scenario: Only source filled
-    When the user fills source as "Mumbai" and selects the suggestion
+  Scenario Outline: Only source filled - <testCaseId>
+    When the user searches with data from excel row "<testCaseId>"
     And the user clicks the search buses button
     Then the error message containing "Please enter source and destination" is displayed
+
+    Examples:
+      | testCaseId |
+      | BS_04      |
 
   @only_destination
-  Scenario: Only destination filled
-    When the user fills destination as "Pune" and selects the suggestion
+  Scenario Outline: Only destination filled - <testCaseId>
+    When the user searches with data from excel row "<testCaseId>"
     And the user clicks the search buses button
     Then the error message containing "Please enter source and destination" is displayed
 
+    Examples:
+      | testCaseId |
+      | BS_07      |
+
+  # ── Excel-driven: happy-path search ──────────────────────────────────────
+
   @both_filled_search
-  Scenario: Both fields filled + search
-    When the user fills source as "Mumbai" and selects the suggestion
-    And the user fills destination as "Pune" and selects the suggestion
+  Scenario Outline: Both fields filled and search - <testCaseId>
+    When the user searches with data from excel row "<testCaseId>"
     And the user clicks the search buses button
     Then the user is navigated to the search results page
+
+    Examples:
+      | testCaseId |
+      | BS_02      |
+
+  # ── Excel-driven: both fields + date ─────────────────────────────────────
 
   @both_filled_with_date
-  Scenario: Both fields + date selection
-    When the user fills source as "Mumbai" and selects the suggestion
-    And the user fills destination as "Pune" and selects the suggestion
-    And the user clicks the date field
-    And the user selects date "27"
+  Scenario Outline: Both fields with date selection - <testCaseId>
+    When the user searches with data from excel row "<testCaseId>"
     And the user clicks the search buses button
     Then the user is navigated to the search results page
 
+    Examples:
+      | testCaseId |
+      | BS_01      |
+
+  # ── Excel-driven: date second click ──────────────────────────────────────
+
   @date_second_click
-  Scenario: Date field second click (re-open calendar)
-    When the user fills source as "Mumbai" and selects the suggestion
-    And the user fills destination as "Pune" and selects the suggestion
-    And the user clicks the date field
-    And the user selects date "27"
+  Scenario Outline: Date field second click re-open calendar - <testCaseId>
+    When the user searches with data from excel row "<testCaseId>"
     And the user clicks the date field again
-    And the user selects date "28"
-    Then the calendar reopens and date "28" is selected successfully
+    And the user selects date "<testCaseId>"
+    Then the calendar reopens and date "<testCaseId>" is selected successfully
+
+    Examples:
+      | testCaseId |
+      | BS_10      |
+
+  # ── Excel-driven: remove source ───────────────────────────────────────────
 
   @remove_source
-  Scenario: Remove source after selection
-    When the user fills source as "Mumbai" and selects the suggestion
-    And the user fills destination as "Pune" and selects the suggestion
+  Scenario Outline: Remove source after selection - <testCaseId>
+    When the user searches with data from excel row "<testCaseId>"
     And the user removes the source
     Then the source field is cleared
+
+    Examples:
+      | testCaseId |
+      | BS_01      |

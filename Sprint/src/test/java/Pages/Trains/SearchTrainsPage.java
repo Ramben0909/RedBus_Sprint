@@ -35,39 +35,111 @@ public class SearchTrainsPage {
     }
 
     public void clickTrainTab() throws InterruptedException {
-        driver.findElement(By.xpath("//span[contains(text(),'Train')]")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.xpath("//span[contains(text(),'Train')]")));
+        driver.findElement(
+            By.xpath("//span[contains(text(),'Train')]")).click();
         Thread.sleep(1500);
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.id("rails-search-widget-source")));
     }
 
-    public void selectSource(String input, String targetName) throws InterruptedException {
+    public void selectSource(String input,
+                              String targetName) throws InterruptedException {
+        // step 1 — click wrapper to open input
+        wait.until(ExpectedConditions.elementToBeClickable(src_wrapper));
         src_wrapper.click();
-        Thread.sleep(1000);
-        driver.findElement(By.id("srcDest")).sendKeys(input);
-        Thread.sleep(2000);
-        clickSuggestion("//div[@id='src-suggestions']//div[contains(@class,'listItem')]", targetName);
+        Thread.sleep(1500);
+
+        // step 2 — wait for input to appear then clear it
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.id("srcDest")));
+        WebElement inputBox = driver.findElement(By.id("srcDest"));
+         
+        Thread.sleep(300);
+
+        // step 3 — type input
+        inputBox.sendKeys(input);
+        Thread.sleep(3000);
+
+        String xpath = "//div[@id='src-suggestions']//div[contains(@class,'listItem')]";
+        String targetXpath = "//div[@id='src-suggestions']//div[contains(@class,'listItem') "
+            + "and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ',"
+            + "'abcdefghijklmnopqrstuvwxyz'),'" + targetName.toLowerCase() + "')]";
+
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
+            By.xpath(xpath), 0));
+
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath(targetXpath)));
+        } catch (Exception e) {
+            System.out.println("Target-specific suggestion not found within 5s, "
+                + "trying clickSuggestion...");
+        }
+
+        clickSuggestion(xpath, targetName);
         Thread.sleep(1000);
     }
 
-    public void selectDestination(String input, String targetName) throws InterruptedException {
+    public void selectDestination(String input,
+                                   String targetName) throws InterruptedException {
+        // step 1 — click wrapper to open input
+        wait.until(ExpectedConditions.elementToBeClickable(dst_wrapper));
         dst_wrapper.click();
         Thread.sleep(1000);
-        driver.findElement(By.id("srcDest")).sendKeys(input);
-        Thread.sleep(2000);
-        clickSuggestion("//div[@id='dst-suggestions']//div[contains(@class,'listItem')]", targetName);
+
+        // step 2 — wait for input to appear then clear it
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.id("srcDest")));
+        WebElement inputBox = driver.findElement(By.id("srcDest"));
+        Thread.sleep(300);
+
+        // step 3 — type input
+        inputBox.sendKeys(input);
+        Thread.sleep(3000);
+
+        String xpath = "//div[@id='dst-suggestions']//div[contains(@class,'listItem')]";
+        String targetXpath = "//div[@id='dst-suggestions']//div[contains(@class,'listItem') "
+            + "and contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', "
+            + "'abcdefghijklmnopqrstuvwxyz'), '" + targetName.toLowerCase() + "')]";
+
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
+            By.xpath(xpath), 0));
+
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath(targetXpath)));
+        } catch (Exception e) {
+            System.out.println("Target-specific suggestion not found within 5s, "
+                + "trying clickSuggestion...");
+        }
+
+        clickSuggestion(xpath, targetName);
         Thread.sleep(1000);
     }
 
     public void clickSearch() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn_search);
+        ((JavascriptExecutor) driver).executeScript(
+            "arguments[0].click();", btn_search);
     }
 
-    public boolean getInvalidDestinationSuggestions(String toInput) throws InterruptedException {
+    public void typeInvalidDestination(String toInput) throws InterruptedException {
+        wait.until(ExpectedConditions.elementToBeClickable(dst_wrapper));
         dst_wrapper.click();
         Thread.sleep(1000);
-        driver.findElement(By.id("srcDest")).sendKeys(toInput);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("srcDest")));
+        WebElement inputBox = driver.findElement(By.id("srcDest"));
+     
+        Thread.sleep(300);
+        inputBox.sendKeys(toInput);
+    }
 
-        String suggestionXpath = "//div[@id='dst-suggestions']//div[contains(@class,'listItem')]";
+    public boolean isNoResultsFound() throws InterruptedException {
         String noResultXpath   = "//div[@id='dst-suggestions']//*[contains(text(),'No Results')]";
+        String suggestionXpath = "//div[@id='dst-suggestions']//div[contains(@class,'listItem')]";
         long endTime = System.currentTimeMillis() + 5000;
 
         while (System.currentTimeMillis() < endTime) {
@@ -83,40 +155,100 @@ public class SearchTrainsPage {
         return false;
     }
 
+    public boolean getInvalidDestinationSuggestions(String toInput)
+            throws InterruptedException {
+
+        wait.until(ExpectedConditions.elementToBeClickable(dst_wrapper));
+        dst_wrapper.click();
+        Thread.sleep(1000);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("srcDest")));
+        WebElement inputBox = driver.findElement(By.id("srcDest"));
+        Thread.sleep(300);
+        inputBox.sendKeys(toInput);
+
+        String suggestionXpath = "//div[@id='dst-suggestions']//div[contains(@class,'listItem')]";
+        String noResultXpath   = "//div[@id='dst-suggestions']//*[contains(text(),'No Results')]";
+
+        long endTime = System.currentTimeMillis() + 5000;
+
+        while (System.currentTimeMillis() < endTime) {
+            if (!driver.findElements(By.xpath(noResultXpath)).isEmpty()
+                    && driver.findElement(By.xpath(noResultXpath)).isDisplayed()) {
+                System.out.println("No Results Found → PASS");
+                return true;
+            }
+            if (!driver.findElements(By.xpath(suggestionXpath)).isEmpty()) {
+                System.out.println("Unexpected suggestions found → FAIL");
+                return false;
+            }
+            Thread.sleep(500);
+        }
+        System.out.println("No response from dropdown → FAIL");
+        return false;
+    }
+
     public void openCalendar() throws InterruptedException {
         driver.findElement(By.tagName("body")).click();
         Thread.sleep(500);
         WebElement calendar = driver.findElement(
             By.xpath("//div[@data-field='date']//div[contains(@class,'dateInputWrapper')]"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", calendar);
+        ((JavascriptExecutor) driver).executeScript(
+            "arguments[0].click();", calendar);
         Thread.sleep(1000);
     }
 
-    public void selectTodayDate() throws InterruptedException {
-        String todayDay = String.valueOf(java.time.LocalDate.now().getDayOfMonth() + 2);
+    public void selectDate(String dateStr) throws InterruptedException {
+        int dayNumber;
+
+        if (dateStr.equalsIgnoreCase("today")) {
+            dayNumber = java.time.LocalDate.now().getDayOfMonth() + 2;
+        } else if (dateStr.equalsIgnoreCase("tomorrow")) {
+            dayNumber = java.time.LocalDate.now().getDayOfMonth() + 3;
+        } else {
+            dayNumber = Integer.parseInt(dateStr) + 2;
+        }
+
+        String day       = String.valueOf(dayNumber);
         String dateXpath = "//li[contains(@class,'dateItem')]//div//div//span";
         Thread.sleep(2000);
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(dateXpath)));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+            By.xpath(dateXpath)));
 
         for (WebElement date : driver.findElements(By.xpath(dateXpath))) {
-            if (date.getText().trim().equals(todayDay) && date.isDisplayed()) {
+            if (date.getText().trim().equals(day) && date.isDisplayed()) {
                 date.click();
+                System.out.println("Clicked date: " + day);
                 return;
             }
         }
-        throw new RuntimeException("Today's date not found in calendar");
+        throw new RuntimeException("Date not found in calendar: " + day);
     }
 
     // ── private helpers ────────────────────────────────────────────────────────
 
-    private void clickSuggestion(String containerXpath, String targetName) {
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(containerXpath), 0));
-        for (WebElement el : driver.findElements(By.xpath(containerXpath))) {
-            if (el.getText().trim().split("\n")[0].trim().equalsIgnoreCase(targetName)) {
+    private void clickSuggestion(String containerXpath,
+                                  String targetName) {
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.xpath(containerXpath)));
+
+        List<WebElement> suggestions = driver.findElements(
+            By.xpath(containerXpath));
+
+        for (WebElement el : suggestions) {
+            String text = el.getText().toLowerCase();
+            if (text.contains(targetName.toLowerCase())) {
                 el.click();
                 return;
             }
         }
+
+        System.out.println("Available suggestions:");
+        for (WebElement el : suggestions) {
+            System.out.println("→ " + el.getText());
+        }
+
         throw new RuntimeException("Suggestion not found: " + targetName);
     }
 }

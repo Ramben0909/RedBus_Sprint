@@ -2,17 +2,42 @@ package testRunner.Runner_SDC;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 
 @CucumberOptions(
-        features = {"src/test/resources/Features_SDC"},
-        glue = {"stepDefinitions.StepDefinations_SDC", "Base.Hooks_SDC"},
+        features = {"src/test/resources/FeatureFiles/Features_SDC"},
+        glue = {"stepDefinitions.StepDefinations_SDC", "Hooks.Hooks_SDC"},
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports/cucumber.html",
-                "json:target/cucumber-reports/cucumber.json"
+                "json:target/cucumber-reports/cucumber.json",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         },
         monochrome = true,
         tags = ""
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
+
+    private static final InheritableThreadLocal<String> BROWSER_TYPE = new InheritableThreadLocal<>();
+
+    @BeforeClass
+    @Parameters("browser")
+    public void setBrowser(String browserName) {
+        BROWSER_TYPE.set(browserName.toLowerCase().trim());
+        System.out.println("=== STARTING BROWSER GROUP: " + browserName.toUpperCase() + " ===");
+    }
+
+    public static String getBrowser() {
+        String br = BROWSER_TYPE.get();
+        return (br != null) ? br : "chrome";
+    }
+
+    // Sequential execution of scenarios (one at a time)
+    @Override
+    @DataProvider(parallel = false)
+    public Object[][] scenarios() {
+        return super.scenarios();
+    }
 }

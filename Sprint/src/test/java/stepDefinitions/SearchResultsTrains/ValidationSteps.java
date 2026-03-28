@@ -1,19 +1,20 @@
 package stepDefinitions.SearchResultsTrains;
-
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 
+import Context.ScenarioContext;
+
+//ValidationSteps.java
 public class ValidationSteps {
 
-    private final Context.ScenarioContext ctx;
+ private ScenarioContext ctx() {
+     return ScenarioContext.get();
+ }
 
-    public ValidationSteps(Context.ScenarioContext ctx) {
-        this.ctx = ctx;
-    }
-
-    @Then("No suggestions should be displayed for invalid destination")
-    public void no_suggestions_for_invalid_destination() throws InterruptedException {
-        boolean result = ctx.searchPage.getInvalidDestinationSuggestions(ctx.toInput);
-        Assert.assertTrue(result, "Expected 'No Results Found' but suggestions appeared");
-    }
+ @Then("No suggestions should be displayed for invalid destination")
+ public void no_suggestions_for_invalid_destination() throws InterruptedException {
+     boolean result = ctx().searchPage.isNoResultsFound();
+     Assert.assertTrue(result,
+         "Expected 'No Results Found' but suggestions appeared");
+ }
 }

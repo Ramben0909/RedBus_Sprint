@@ -1,35 +1,32 @@
-package stepDefinitions.SearchResultsTrains;  // ← change this
+package Hooks.Hooks_SearchTrains;
 
+import Context.ScenarioContext;
+import DriverManager.DriverManagerRB;
 import Pages.Trains.SearchTrainsPage;
 import Pages.Trains.ResultsPage;
 import Pages.Trains.FilterSortPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.openqa.selenium.chrome.ChromeDriver;
-import java.time.Duration;
+import org.openqa.selenium.WebDriver;
 
 public class Hooks {
 
-    private final Context.ScenarioContext ctx;
+	// ── NO constructor injection — each thread gets its own ctx ──────
+	@Before
+	public void setUp() {
+		DriverManagerRB.initDriver();
+		WebDriver driver = DriverManagerRB.getDriver();
 
-    public Hooks(Context.ScenarioContext ctx) {
-        this.ctx = ctx;
-    }
+		// get THIS thread's context and initialize pages
+		ScenarioContext ctx = ScenarioContext.get();
+		ctx.searchPage = new SearchTrainsPage(driver);
+		ctx.resultsPage = new ResultsPage(driver);
+		ctx.filterSortPage = new FilterSortPage(driver);
+	}
 
-    @Before
-    public void setUp() {
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        ctx.searchPage     = new SearchTrainsPage(driver);
-        ctx.resultsPage    = new ResultsPage(driver);
-        ctx.filterSortPage = new FilterSortPage(driver);
-    }
-
-    @After
-    public void tearDown() {
-        if (ctx.searchPage != null && ctx.searchPage.driver != null) {
-            ctx.searchPage.driver.quit();
-        }
-    }
+	@After
+	public void tearDown() {
+		DriverManagerRB.quitDriver();
+		ScenarioContext.reset(); // ← cleans up this thread's context
+	}
 }
