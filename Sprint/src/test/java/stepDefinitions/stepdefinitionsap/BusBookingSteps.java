@@ -1,4 +1,4 @@
-package stepDefinitions.stepdefinitionsap;
+package stepDefinitions.stepdefinitionsAP;
 
 import DriverManager.DriverManagerAP;
 import io.cucumber.java.en.*;
@@ -6,12 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
-import Pages.pagesap.*;
-import Pages.pagesap.BusSelectionPage;
-import Pages.pagesap.HomePage;
-import Pages.pagesap.PassengerPage;
-import Pages.pagesap.PaymentPage;
-import Pages.pagesap.SeatPage;
+import Pages.pagesAP.*;
+import Pages.pagesAP.BusSelectionPage;
+import Pages.pagesAP.HomePage;
+import Pages.pagesAP.PassengerPage;
+import Pages.pagesAP.PaymentPage;
+import Pages.pagesAP.SeatPage;
 import Utils.utilsAP.*;
 
 public class BusBookingSteps {
