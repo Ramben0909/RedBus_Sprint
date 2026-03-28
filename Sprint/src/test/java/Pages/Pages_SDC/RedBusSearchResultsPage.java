@@ -40,7 +40,7 @@ public class RedBusSearchResultsPage {
     public void clickDTDropdown() {
         WebElement dt = wait.until(ExpectedConditions.elementToBeClickable(By.id("dt")));
         dt.click();
-        // Wait for the time options panel to appear
+      
         wait.until(ExpectedConditions.presenceOfElementLocated(
             By.xpath("//div[contains(@class,'listText') or contains(@class,'time')]")));
         sleep(1200);
@@ -62,7 +62,7 @@ public class RedBusSearchResultsPage {
             .executeScript("arguments[0].scrollIntoView({block: 'center'});", option);
         
         option.click();
-        sleep(1500); // Let the filter apply on RedBus
+        sleep(1500); 
     }
 
     /**
