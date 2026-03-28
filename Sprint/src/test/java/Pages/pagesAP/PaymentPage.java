@@ -1,4 +1,4 @@
-package Pages.pagesap;
+package Pages.pagesAP;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
@@ -18,7 +18,7 @@ public class PaymentPage {
     }
 
     public void selectGender() {
-        driver.findElement(By.xpath("//label[text()='Male']")).click();
+        driver.findElement(By.xpath("//div[@aria-label='Male']")).click();
     }
 
     public void enterMobile(String number) {
