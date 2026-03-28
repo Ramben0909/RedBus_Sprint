@@ -1,163 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-26T11:45:22 IST" name="RedBus Train Automation Suite" finished-at="2026-03-26T11:47:59 IST" duration-ms="156801">
+  <suite started-at="2026-03-28T11:10:07 IST" name="Default suite" finished-at="2026-03-28T11:11:53 IST" duration-ms="106878">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.SearchTestRunner@710f4dc7]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.AvailabilityTestRunner@757277dc]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.PnrTestRunner@7bedc48a]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2026-03-26T11:45:22 IST" name="Train Search Tests" finished-at="2026-03-26T11:47:59 IST" duration-ms="156801">
-      <class name="runner.SearchTestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runner.SearchTestRunner@710f4dc7]" started-at="2026-03-26T11:45:22 IST" name="setUpClass" finished-at="2026-03-26T11:45:24 IST" duration-ms="1579" status="PASS">
+    <test started-at="2026-03-28T11:10:07 IST" name="Default test" finished-at="2026-03-28T11:11:53 IST" duration-ms="106878">
+      <class name="runner.PnrTestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runner.PnrTestRunner@7bedc48a]" started-at="2026-03-28T11:10:07 IST" name="setUpClass" finished-at="2026-03-28T11:10:08 IST" duration-ms="1293" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@74455848]]>
+                <![CDATA[org.testng.TestRunner@191ae03f]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.SearchTestRunner@710f4dc7]" started-at="2026-03-26T11:45:24 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T11:47:58 IST" duration-ms="154425" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.PnrTestRunner@7bedc48a]" started-at="2026-03-28T11:10:08 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-28T11:11:51 IST" duration-ms="102611" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Search with invalid input keeps Check Status button disabled"]]>
+                <![CDATA["Verify PNR test data from Excel"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Live Train Running Status on RedBus"]]>
+                <![CDATA["PNR Status Check"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.SearchTestRunner@710f4dc7]" started-at="2026-03-26T11:45:24 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T11:47:58 IST" duration-ms="154183" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.PnrTestRunner@7bedc48a]" started-at="2026-03-28T11:10:08 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-28T11:11:50 IST" duration-ms="101625" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Search with valid train input and verify details page opens"]]>
+                <![CDATA["Less than 10-digit PNR disables button"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Live Train Running Status on RedBus"]]>
+                <![CDATA["PNR Status Check"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.SearchTestRunner@710f4dc7]" started-at="2026-03-26T11:45:24 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T11:47:58 IST" duration-ms="153890" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.PnrTestRunner@7bedc48a]" started-at="2026-03-28T11:10:08 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-28T11:11:49 IST" duration-ms="101447" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Search with invalid input keeps Check Status button disabled"]]>
+                <![CDATA["More than 10-digit PNR is restricted"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Live Train Running Status on RedBus"]]>
+                <![CDATA["PNR Status Check"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.SearchTestRunner@710f4dc7]" started-at="2026-03-26T11:45:24 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T11:47:56 IST" duration-ms="152217" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.PnrTestRunner@7bedc48a]" started-at="2026-03-28T11:10:08 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-28T11:11:53 IST" duration-ms="105343" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Search with valid train input and verify details page opens"]]>
+                <![CDATA["Invalid 10-digit PNR shows error message"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Live Train Running Status on RedBus"]]>
+                <![CDATA["PNR Status Check"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.SearchTestRunner@710f4dc7]" started-at="2026-03-26T11:45:24 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T11:47:58 IST" duration-ms="154184" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.PnrTestRunner@7bedc48a]" started-at="2026-03-28T11:10:08 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-28T11:11:51 IST" duration-ms="102602" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Search with valid train input and verify details page opens"]]>
+                <![CDATA["Valid 10-digit PNR shows booking status"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Live Train Running Status on RedBus"]]>
+                <![CDATA["PNR Status Check"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.SearchTestRunner@710f4dc7]" started-at="2026-03-26T11:45:24 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T11:47:59 IST" duration-ms="154980" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Search with valid train input and verify details page opens"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Live Train Running Status on RedBus"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runner.SearchTestRunner@710f4dc7]" started-at="2026-03-26T11:47:59 IST" name="tearDownClass" finished-at="2026-03-26T11:47:59 IST" duration-ms="137" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runner.PnrTestRunner@7bedc48a]" started-at="2026-03-28T11:11:53 IST" name="tearDownClass" finished-at="2026-03-28T11:11:53 IST" duration-ms="134" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-      </class> <!-- runner.SearchTestRunner -->
-    </test> <!-- Train Search Tests -->
-    <test started-at="2026-03-26T11:45:22 IST" name="Seat Availability Tests" finished-at="2026-03-26T11:47:59 IST" duration-ms="156801">
-      <class name="runner.AvailabilityTestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runner.AvailabilityTestRunner@757277dc]" started-at="2026-03-26T11:45:22 IST" name="setUpClass" finished-at="2026-03-26T11:45:24 IST" duration-ms="1557" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[org.testng.TestRunner@e7edb54]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.AvailabilityTestRunner@757277dc]" started-at="2026-03-26T11:45:24 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T11:47:59 IST" duration-ms="154971" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["Check seat availability from Top 10 trains list"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Live Train Running Status on RedBus"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runner.AvailabilityTestRunner@757277dc]" started-at="2026-03-26T11:47:59 IST" name="tearDownClass" finished-at="2026-03-26T11:47:59 IST" duration-ms="147" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDownClass -->
-      </class> <!-- runner.AvailabilityTestRunner -->
-    </test> <!-- Seat Availability Tests -->
-  </suite> <!-- RedBus Train Automation Suite -->
+      </class> <!-- runner.PnrTestRunner -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

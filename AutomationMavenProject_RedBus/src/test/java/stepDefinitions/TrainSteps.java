@@ -10,7 +10,6 @@ import utils.DriverManager;
 
 import java.util.List;
 import utils.ExcelUtils;
-import java.util.List;
 
 public class TrainSteps {
 

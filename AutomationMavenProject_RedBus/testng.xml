@@ -1,15 +1,20 @@
 <suite name="RedBus Train Automation Suite" parallel="tests" thread-count="2">
 
-    <test name="Train Search Tests">
-        <classes>
-            <class name="runner.SearchTestRunner"/>
-        </classes>
-    </test>
+	<test name="Train Search Tests">
+		<classes>
+			<class name="runner.SearchTestRunner" />
+		</classes>
+	</test>
 
-    <test name="Seat Availability Tests">
-        <classes>
-            <class name="runner.AvailabilityTestRunner"/>
-        </classes>
-    </test>
+	<test name="Seat Availability Tests">
+		<classes>
+			<class name="runner.AvailabilityTestRunner" />
+		</classes>
+	</test>
 
+	<test name="PNR Status Tests">
+		<classes>
+			<class name="runner.PnrTestRunner" />
+		</classes>
+	</test>
 </suite>
