@@ -2,6 +2,7 @@ package stepDefinitions.stepDefinitions_trainstatus;
 
 import java.util.List;
 
+import org.jcp.xml.dsig.internal.dom.Utils;
 import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
@@ -14,14 +15,14 @@ import Utils.ExcelUtils_trainstatus;
 public class PnrSteps {
 
     // Page object (same pattern as TrainSteps)
-    PnrPage pnrPage = new PnrPage(DriverManager.getDriver());
+    PnrPage pnrPage = new PnrPage(DriverManager_trainstatus.getDriver());
 
     // ── GIVEN ─────────────────────────────────────────────
 
     @Given("the PNR test data is loaded from Excel sheet {string}")
     public void loadPnrData(String sheetName) {
 
-        List<String[]> rows = ExcelUtils.getSheetData(sheetName);
+        List<String[]> rows = ExcelUtils_trainstatus.getSheetData(sheetName);
 
         System.out.println("\n===== PNR Excel Data =====");
         System.out.printf("%-15s %-10s %-30s%n", "PNR", "Type", "Description");
