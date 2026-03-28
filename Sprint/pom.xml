@@ -65,11 +65,11 @@
         </dependency>
 
         <!-- Apache POI -->
-        <dependency>
+<!--         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.2.3</version>
-        </dependency>
+        </dependency>  -->
 
         <!--  poi-ooxml: REQUIRED for XSSFWorkbook to read .xlsx files  -->
 		<dependency>
