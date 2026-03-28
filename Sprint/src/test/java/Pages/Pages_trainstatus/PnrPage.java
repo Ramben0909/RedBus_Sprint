@@ -1,4 +1,4 @@
-package pages;
+package Pages.Pages_trainstatus;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

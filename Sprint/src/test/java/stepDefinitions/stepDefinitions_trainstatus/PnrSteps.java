@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinitions.stepDefinitions_trainstatus;
 
 import java.util.List;
 
