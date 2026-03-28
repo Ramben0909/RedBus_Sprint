@@ -6,9 +6,10 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterClass;
 
 @CucumberOptions(
-    features = "src/test/resources/features/busBooking.feature",
-    glue = "stepdefinitions",
-    plugin = {"pretty", "html:target/report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
+    features = "src/test/resources/FeatureFiles/featureAP/busBooking.feature",
+    glue = "stepDefinitions.stepdefinitionsAP",
+    plugin = {"pretty", "html:target/report.h"
+    		+ "tml", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
