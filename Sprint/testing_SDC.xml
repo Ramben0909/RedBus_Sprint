@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="SDC Test Suite" verbose="1" parallel="none">
+
+    <test name="SDC Module">
+        <classes>
+            <class name="testRunner.Runner_SDC.TestRunner"/>
+        </classes>
+    </test>
+
+</suite>

@@ -56,17 +56,17 @@ public class ResultsPage {
 
     public List<String> getArrivalTimesText(int limit) {
         // wait for page to settle after sort click
-        try { Thread.sleep(3000); } catch (InterruptedException e) { e.printStackTrace(); }
+        try { Thread.sleep(6000); } catch (InterruptedException e) { e.printStackTrace(); }
 
-        // wait for ANY train card to appear first
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
+        // ← use longer wait specifically for post-sort rendering on Edge
+        WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        longWait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
             By.xpath("//div[contains(@class,'srpCardWrap')]"), 0));
 
         // now try to find the result divs — try both possible xpaths
         List<WebElement> trains = driver.findElements(By.xpath("//div[contains(@id,'Normal')]"));
 
         if (trains.isEmpty()) {
-            // fallback xpath — sometimes redbus uses different container after sort
             trains = driver.findElements(
                 By.xpath("//div[contains(@class,'srpCardWrap')]"));
             System.out.println("Using fallback xpath, found: " + trains.size());

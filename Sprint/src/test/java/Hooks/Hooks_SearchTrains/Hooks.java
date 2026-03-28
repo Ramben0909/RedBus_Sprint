@@ -11,25 +11,22 @@ import org.openqa.selenium.WebDriver;
 
 public class Hooks {
 
-    private final ScenarioContext ctx;
+	// ── NO constructor injection — each thread gets its own ctx ──────
+	@Before
+	public void setUp() {
+		DriverManagerRB.initDriver();
+		WebDriver driver = DriverManagerRB.getDriver();
 
-    public Hooks(ScenarioContext ctx) {
-        this.ctx = ctx;
-    }
+		// get THIS thread's context and initialize pages
+		ScenarioContext ctx = ScenarioContext.get();
+		ctx.searchPage = new SearchTrainsPage(driver);
+		ctx.resultsPage = new ResultsPage(driver);
+		ctx.filterSortPage = new FilterSortPage(driver);
+	}
 
-    @Before
-    public void setUp() {
-        // browser name already set per thread by BrowserParameterListener
-        DriverManagerRB.initDriver();
-        WebDriver driver = DriverManagerRB.getDriver();
-
-        ctx.searchPage     = new SearchTrainsPage(driver);
-        ctx.resultsPage    = new ResultsPage(driver);
-        ctx.filterSortPage = new FilterSortPage(driver);
-    }
-
-    @After
-    public void tearDown() {
-        DriverManagerRB.quitDriver();
-    }
+	@After
+	public void tearDown() {
+		DriverManagerRB.quitDriver();
+		ScenarioContext.reset(); // ← cleans up this thread's context
+	}
 }

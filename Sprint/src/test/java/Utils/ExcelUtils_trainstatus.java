@@ -11,7 +11,7 @@ import java.util.List;
 public class ExcelUtils_trainstatus {
 
     private static final String FILE_PATH =
-        "src/test/resources/testdata/TrainTestData.xlsx";
+        "src/test/resources/Data/TrainTestData.xlsx";
 
     public static List<String[]> getSheetData(String sheetName) {
 

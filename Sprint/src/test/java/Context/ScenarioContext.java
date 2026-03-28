@@ -6,6 +6,19 @@ import Pages.Trains.FilterSortPage;
 
 public class ScenarioContext {
 
+    // ── ThreadLocal storage ───────────────────────────────────────────
+    private static final ThreadLocal<ScenarioContext> INSTANCE =
+        ThreadLocal.withInitial(ScenarioContext::new);
+
+    public static ScenarioContext get() {
+        return INSTANCE.get();
+    }
+
+    public static void reset() {
+        INSTANCE.remove();
+    }
+
+    // ── your existing fields — unchanged ─────────────────────────────
     public SearchTrainsPage searchPage;
     public ResultsPage      resultsPage;
     public FilterSortPage   filterSortPage;
@@ -14,7 +27,6 @@ public class ScenarioContext {
     public String  toInput;
     public boolean isFrom = false;
 
-    // holds data for current Excel row being tested
     public String currentFromInput;
     public String currentFromSelect;
     public String currentToInput;

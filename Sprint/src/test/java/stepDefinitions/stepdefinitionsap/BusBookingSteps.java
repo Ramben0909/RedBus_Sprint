@@ -223,7 +223,7 @@ public class BusBookingSteps {
 	@When("user enters valid passenger details")
 	public void validPassenger() throws Exception {
 		passengerPage = new PassengerPage(driver);
-		String[][] data = ExcelUtil.readExcel("src/test/resources/data/data.xlsx");
+		String[][] data = ExcelUtil.readExcel("src/test/resources/data/dataAP.xlsx");
 
 		softAssert.assertNotNull(data, "Excel data should not be null");
 		softAssert.assertTrue(data.length > 0, "Excel data should have at least one row");

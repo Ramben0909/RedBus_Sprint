@@ -10,7 +10,7 @@ import java.util.List;
 public class ExcelUtilsRB {
 
     private static final String FILE_PATH =
-        "src/test/resources/TestData/TrainSearchData.xlsx";
+        "src/test/resources/Data/TrainSearchData.xlsx";
 
     @SuppressWarnings("resource")
     public static List<String[]> getTestData(String filePath,

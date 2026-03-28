@@ -37,16 +37,15 @@ Feature: Train Search Functionality (redRail)
       | DS_03   |
 
   Scenario Outline: User searches trains with an invalid destination
-    Given User is on redRail homepage
-    When User clicks on Train Tickets
-    And User loads Excel data id "<data_id>" from "InvalidSearch"
-    And User enters loaded From field
-    And User selects loaded From suggestion
-    And User enters loaded invalid destination
-    Then No suggestions should be displayed for invalid destination
+  Given User is on redRail homepage
+  When User clicks on Train Tickets
+  And User loads Excel data id "<data_id>" from "InvalidSearch"
+  And User selects loaded From suggestion
+  And User enters loaded invalid destination
+  Then No suggestions should be displayed for invalid destination
 
-    Examples: Invalid destinations
-      | data_id |
-      | IS_01   |
-      | IS_02   |
-      | IS_03   |
+  Examples: Invalid destinations
+    | data_id |
+    | IS_01   |
+    | IS_02   |
+    | IS_03   |

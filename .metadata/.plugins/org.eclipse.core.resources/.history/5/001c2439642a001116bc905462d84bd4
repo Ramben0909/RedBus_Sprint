@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="RedRail Cross Browser Suite" verbose="1"
+       parallel="none"
+       thread-count="4">
+
+    <listeners>
+        <listener class-name="Hooks.BrowserParameterListener"/>
+    </listeners>
+    
+    <!-- Phase 1 — Firefox runs TrainSearch sequentially -->
+    <test name="Firefox - Train Search" preserve-order="true">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="testRunner.TestRunnerSearch"/>
+        </classes>
+    </test>
+
+  
+    <!-- Phase 2 — Edge runs TrainResults sequentially after Firefox completes -->
+    <test name="Edge - Train Results" preserve-order="true">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="testRunner.TestRunnerResults"/>
+        </classes>
+    </test>
+    
+
+</suite>
