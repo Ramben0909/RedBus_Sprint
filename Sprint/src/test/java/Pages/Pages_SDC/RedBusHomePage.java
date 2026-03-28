@@ -59,7 +59,7 @@ public class RedBusHomePage {
 	 * Selects a specific city from the source auto-suggestion dropdown.
 	 */
 	public void selectSourceSuggestion(String city) {
-        sleep(1000); // Increased buffer for parallel runs
+        sleep(2000); // Increased buffer for parallel runs
         String xpath = "//div[contains(text(), '" + city + "')]";
         WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         Assert.assertTrue(suggestion.isDisplayed(), "Source suggestion is not displayed for city: " + city);
@@ -82,7 +82,7 @@ public class RedBusHomePage {
 	 * Selects a specific city from the destination auto-suggestion dropdown.
 	 */
 	public void selectDestinationSuggestion(String city) {
-        sleep(1000);
+        sleep(2000);
         String xpath = "//div[contains(text(), '" + city + "')]";
         WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         Assert.assertTrue(suggestion.isDisplayed(), "Destination suggestion is not displayed for city: " + city);
@@ -137,6 +137,7 @@ public class RedBusHomePage {
 	 * Selects a specific day from the opened calendar.
 	 */
 	public void selectDate(String day) {
+		sleep(1000);
 		String xpath = "//span[text()='" + day + "']";
 		WebElement dateEl = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
 		Assert.assertTrue(dateEl.isDisplayed(), "Date element is not displayed for day: " + day);

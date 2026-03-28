@@ -1,8 +1,7 @@
 package stepDefinitions.StepDefinations_SDC;
 
 import Hooks.Hooks_SDC.Hooks;
-import Pages.Pages_SDC.RedBusHomePage;
-import Pages.Pages_SDC.RedBusSearchResultsPage;
+import Pages.Pages_SDC.*;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
