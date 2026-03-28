@@ -1,4 +1,4 @@
-package stepDefinitions.stepdefinitionsAP;
+package stepDefinitions.stepdefinitionsap;
 
 import DriverManager.DriverManagerAP;
 import io.cucumber.java.en.*;
