@@ -1,0 +1,73 @@
+<<<<<<< HEAD
+package Base;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import DriverManager.DriverManagerAP;
+import DriverManager.DriverManagerRB;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class BaseTest {
+
+    public static WebDriver driver;
+    public static boolean isInitialized = false;
+
+    public void setup() throws InterruptedException {
+
+        
+        if (isInitialized) {
+            return;
+        }
+
+        DriverManagerAP.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        driver.get("https://www.redbus.in/");
+
+        System.out.println("Please login manually within 2 minutes...");
+
+        Thread.sleep(120000);
+
+        isInitialized = true; 
+    }
+
+    public void tearDown() {
+    }
+=======
+package Base;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class BaseTest {
+
+    public static WebDriver driver;
+    public static boolean isInitialized = false;
+
+    public void setup() throws InterruptedException {
+
+        
+        if (isInitialized) {
+            return;
+        }
+
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        driver.get("https://www.redbus.in/");
+
+        System.out.println("Please login manually within 2 minutes...");
+
+        Thread.sleep(120000);
+
+        isInitialized = true; 
+    }
+
+    public void tearDown() {
+    }
+>>>>>>> f8cc0abc339ad911bcf58bb26f3e3f988be777d8
+}

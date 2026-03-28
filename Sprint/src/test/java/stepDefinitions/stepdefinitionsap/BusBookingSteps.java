@@ -1,4 +1,4 @@
-package stepDefinitions.stepdefinitionsAP;
+package stepDefinitions.stepdefinitionsap;
 
 import DriverManager.DriverManagerAP;
 import io.cucumber.java.en.*;
@@ -6,7 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
-import Pages.pagesAP.*;
+import Pages.pagesap.*;
+import Pages.pagesap.BusSelectionPage;
+import Pages.pagesap.HomePage;
+import Pages.pagesap.PassengerPage;
+import Pages.pagesap.PaymentPage;
+import Pages.pagesap.SeatPage;
 import Utils.utilsAP.*;
 
 public class BusBookingSteps {
@@ -218,7 +223,7 @@ public class BusBookingSteps {
 	@When("user enters valid passenger details")
 	public void validPassenger() throws Exception {
 		passengerPage = new PassengerPage(driver);
-		String[][] data = ExcelUtil.readExcel("src/test/resources/data/data.xlsx");
+		String[][] data = ExcelUtil.readExcel("src/test/resources/data/dataAP.xlsx");
 
 		softAssert.assertNotNull(data, "Excel data should not be null");
 		softAssert.assertTrue(data.length > 0, "Excel data should have at least one row");

@@ -1,0 +1,163 @@
+package testRunner.TrainSearchResults;
+
+
+import Pages.Trains.SearchTrainsPage;
+import Utils.ExcelUtilsRB;
+import Pages.Trains.ResultsPage;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import DriverManager.DriverManagerRB;
+
+import java.io.IOException;
+import java.time.Duration;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ExcelDrivenTestRB {
+
+    private static final String FILE_PATH =
+            "src/test/resources/TestData/TrainSearchData.xlsx";
+
+    // ── DataProviders ──────────────────────────────────────────────────────────
+
+    @DataProvider(name = "validSearchData", parallel = true)
+    public Object[][] getValidSearchData() throws IOException {
+        List<String[]> rows = ExcelUtilsRB.getTestData(FILE_PATH, "ValidSearch");
+
+        List<Object[]> filtered = new ArrayList<>();
+
+        for (int i = 2; i < rows.size(); i++) {
+            String[] row = rows.get(i);
+            if (row == null || row.length == 0 || row[0].trim().isEmpty()) continue;
+
+            System.out.println("Row " + i + ": " + Arrays.toString(row));
+            filtered.add(row);
+        }
+
+        return filtered.toArray(new Object[0][]);
+    }
+
+    @DataProvider(name = "dateSearchData", parallel = true)
+    public Object[][] getDateSearchData() throws IOException {
+        List<String[]> rows = ExcelUtils.getTestData(FILE_PATH, "DateSearch");
+
+        List<Object[]> filtered = new ArrayList<>();
+
+        for (int i = 2; i < rows.size(); i++) {
+            String[] row = rows.get(i);
+            if (row == null || row.length == 0 || row[0].trim().isEmpty()) continue;
+
+            System.out.println("Row " + i + ": " + Arrays.toString(row));
+            filtered.add(row);
+        }
+
+        return filtered.toArray(new Object[0][]);
+    }
+
+    @DataProvider(name = "invalidSearchData", parallel = true)
+    public Object[][] getInvalidSearchData() throws IOException {
+        List<String[]> rows = ExcelUtilsRB.getTestData(FILE_PATH, "InvalidSearch");
+
+        List<Object[]> filtered = new ArrayList<>();
+
+        for (int i = 2; i < rows.size(); i++) {
+            String[] row = rows.get(i);
+            if (row == null || row.length == 0 || row[0].trim().isEmpty()) continue;
+
+            System.out.println("Row " + i + ": " + Arrays.toString(row));
+            filtered.add(row);
+        }
+
+        return filtered.toArray(new Object[0][]);
+    }
+
+    // ── Tests ──────────────────────────────────────────────────────────────────
+
+    @Test(dataProvider = "validSearchData")
+    public void validTrainSearch(String fromInput, String fromSelect,
+                                 String toInput, String toSelect)
+            throws InterruptedException {
+
+        DriverManagerRB.setDriver();
+        WebDriver driver = DriverManagerRB.getDriver();
+
+        SearchTrainsPage searchPage = setup(driver);
+        ResultsPage resultsPage = new ResultsPage(driver);
+
+        try {
+            searchPage.navigateTo("https://www.redbus.in/");
+            searchPage.clickTrainTab();
+            searchPage.selectSource(fromInput, fromSelect);
+            searchPage.selectDestination(toInput, toSelect);
+            searchPage.clickSearch();
+            Thread.sleep(3000);
+
+            Assert.assertTrue(resultsPage.areResultsDisplayed());
+
+        } finally {
+            DriverManager.quitDriver();
+        }
+    }
+
+    @Test(dataProvider = "dateSearchData")
+    public void dateTrainSearch(String fromInput, String fromSelect,
+                                String toInput, String toSelect,
+                                String date)
+            throws InterruptedException {
+
+        DriverManager.setDriver();
+        WebDriver driver = DriverManager.getDriver();
+
+        SearchTrainsPage searchPage = setup(driver);
+        ResultsPage resultsPage = new ResultsPage(driver);
+
+        try {
+            searchPage.navigateTo("https://www.redbus.in/");
+            searchPage.clickTrainTab();
+            searchPage.selectSource(fromInput, fromSelect);
+            searchPage.selectDestination(toInput, toSelect);
+            searchPage.openCalendar();
+            searchPage.selectDate(date);
+            searchPage.clickSearch();
+            Thread.sleep(3000);
+
+            Assert.assertTrue(resultsPage.areResultsDisplayed());
+
+        } finally {
+            DriverManager.quitDriver();
+        }
+    }
+
+    @Test(dataProvider = "invalidSearchData")
+    public void invalidDestSearch(String fromInput, String fromSelect,
+                                  String invalidDest)
+            throws InterruptedException {
+
+        DriverManager.setDriver();
+        WebDriver driver = DriverManager.getDriver();
+
+        SearchTrainsPage searchPage = setup(driver);
+
+        try {
+            searchPage.navigateTo("https://www.redbus.in/");
+            searchPage.clickTrainTab();
+            searchPage.selectSource(fromInput, fromSelect);
+
+            boolean result = searchPage.getInvalidDestinationSuggestions(invalidDest);
+            Assert.assertTrue(result);
+
+        } finally {
+            DriverManager.quitDriver();
+        }
+    }
+
+    private SearchTrainsPage setup(WebDriver driver) {
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        return new SearchTrainsPage(driver);
+    }
+}
