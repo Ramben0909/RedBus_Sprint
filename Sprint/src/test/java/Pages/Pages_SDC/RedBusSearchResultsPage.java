@@ -70,7 +70,7 @@ public class RedBusSearchResultsPage {
      */
     public void clickFilter(String filterName) {
         
-            WebElement filter = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'label') and contains(text(), '"+filterName+"')]")));
+            WebElement filter = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'label') and starts-with(text(), '"+filterName+"')]")));
             Assert.assertTrue(filter.isDisplayed(), "Filter label is not displayed: " + filterName);
             filter.click();
         
