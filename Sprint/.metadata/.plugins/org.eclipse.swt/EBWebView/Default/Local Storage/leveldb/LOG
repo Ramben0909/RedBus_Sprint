@@ -1,3 +1,2 @@
-2026/03/28-12:31:59.730 7b70 Reusing MANIFEST C:\Users\ASUS\OneDrive\Desktop\GITREDBUS\RedBus_Sprint\Sprint\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2026/03/28-12:31:59.757 7b70 Recovering log #3
-2026/03/28-12:31:59.763 7b70 Reusing old log C:\Users\ASUS\OneDrive\Desktop\GITREDBUS\RedBus_Sprint\Sprint\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 
+2026/03/28-14:41:15.125 477c Creating DB C:\Users\USER\OneDrive\Desktop\cg_training\SprintGit\RedBus_Sprint\Sprint\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb since it was missing.
+2026/03/28-14:41:15.424 477c Reusing MANIFEST C:\Users\USER\OneDrive\Desktop\cg_training\SprintGit\RedBus_Sprint\Sprint\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
