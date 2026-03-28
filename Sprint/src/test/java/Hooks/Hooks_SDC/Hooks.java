@@ -5,42 +5,69 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import testRunner.Runner_SDC.TestRunner;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Hooks {
 
-    // ThreadLocal ensures thread safety for parallel execution
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-
-    // Getter to access the driver in step definitions
     public static WebDriver getDriver() {
         return driver.get();
     }
 
     @Before
     public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
-        Map<String, Object> prefs = new HashMap<>();
-        prefs.put("profile.default_content_setting_values.notifications", 2);
-        options.setExperimentalOption("prefs", prefs);
+        String browser = TestRunner.getBrowser();
+        WebDriver webDriver = null;
 
-        WebDriver webDriver = new ChromeDriver(options);
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--disable-notifications");
+                Map<String, Object> chromePrefs = new HashMap<>();
+                chromePrefs.put("profile.default_content_setting_values.notifications", 2);
+                chromeOptions.setExperimentalOption("prefs", chromePrefs);
+                webDriver = new ChromeDriver(chromeOptions);
+                System.out.println("=== Chrome Browser Launched on Thread " + Thread.currentThread() + " ===");
+                break;
+
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--disable-notifications");
+                Map<String, Object> edgePrefs = new HashMap<>();
+                edgePrefs.put("profile.default_content_setting_values.notifications", 2);
+                edgeOptions.setExperimentalOption("prefs", edgePrefs);
+                webDriver = new EdgeDriver(edgeOptions);
+                System.out.println("=== Edge Browser Launched on Thread " + Thread.currentThread() + " ===");
+                break;
+
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--disable-notifications");
+                webDriver = new FirefoxDriver(firefoxOptions);
+                System.out.println("=== Firefox Browser Launched on Thread " + Thread.currentThread() + " ===");
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browser + ". Supported: chrome, edge, firefox");
+        }
+
         webDriver.manage().window().maximize();
-        
-        // Set the driver to the current thread
         driver.set(webDriver);
-        System.out.println("=== Browser Launched on Thread ===");
     }
 
     @After
     public void tearDown() {
         if (getDriver() != null) {
             getDriver().quit();
-            driver.remove(); // Essential to prevent memory leaks
+            driver.remove();
             System.out.println("=== Browser Closed on Thread ===");
         }
     }
