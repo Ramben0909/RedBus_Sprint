@@ -1,48 +1,50 @@
-package pages;
+package Pages.pagesap;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
-import org.openqa.selenium.support.ui.*;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 
 public class HomePage {
 
     WebDriver driver;
     WebDriverWait wait;
+    Robot robot;
 
-    public HomePage(WebDriver driver) {
+    public HomePage(WebDriver driver) throws AWTException {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        robot = new Robot();
     }
-
-    @FindBy(id = "srcinput")
+    //Source
+    @FindBy(xpath = "//input[@id='srcinput']")
     WebElement source;
-
-    @FindBy(id = "destinput")
+    //Destination
+    @FindBy(xpath = "//input[@id='destinput']")
     WebElement destination;
-
+    //Date
     @FindBy(xpath = "//button[text()='Tomorrow']")
-    WebElement tomorrow;
+    WebElement tomorrowBtn;
 
     public void openSite() {
         driver.get("https://www.redbus.in/");
     }
 
-    public void search(String src, String dest) {
-
-        source.clear();
+    public void searchBus(String src, String dest) throws InterruptedException {
+    	//Select first option
         source.sendKeys(src);
-
-        By suggestion = By.xpath("(//ul[contains(@class,'autoFill')]//li)[1]");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(suggestion)).click();
-
-        destination.clear();
+        Thread.sleep(2000);
+        robot.keyPress(KeyEvent.VK_DOWN);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        //select first option
         destination.sendKeys(dest);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(suggestion)).click();
+        Thread.sleep(2000);
+        robot.keyPress(KeyEvent.VK_DOWN);
+        robot.keyPress(KeyEvent.VK_ENTER);
 
-        wait.until(ExpectedConditions.elementToBeClickable(tomorrow));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", tomorrow);
+        tomorrowBtn.click();
     }
 }

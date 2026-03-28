@@ -11,7 +11,14 @@ import java.util.Map;
 
 public class Hooks {
 
-    public static WebDriver driver;
+    // ThreadLocal ensures thread safety for parallel execution
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+
+    // Getter to access the driver in step definitions
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
 
     @Before
     public void setUp() {
@@ -21,16 +28,20 @@ public class Hooks {
         prefs.put("profile.default_content_setting_values.notifications", 2);
         options.setExperimentalOption("prefs", prefs);
 
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        System.out.println("=== Browser Launched ===");
+        WebDriver webDriver = new ChromeDriver(options);
+        webDriver.manage().window().maximize();
+        
+        // Set the driver to the current thread
+        driver.set(webDriver);
+        System.out.println("=== Browser Launched on Thread ===");
     }
 
     @After
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            System.out.println("=== Browser Closed ===");
+        if (getDriver() != null) {
+            getDriver().quit();
+            driver.remove(); // Essential to prevent memory leaks
+            System.out.println("=== Browser Closed on Thread ===");
         }
     }
 }

@@ -1,8 +1,8 @@
-package pages;
+package Pages.pagesap;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.*;
-
 import java.time.Duration;
 
 public class SeatPage {
@@ -12,32 +12,91 @@ public class SeatPage {
 
     public SeatPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
-    public void selectSeat(String id) {
-        By seat = By.xpath("//span[@id='" + id + "']");
-        wait.until(ExpectedConditions.elementToBeClickable(seat)).click();
+    private void switchToSeatFrame() {
+        driver.switchTo().defaultContent();
+        try {
+            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(0));
+        } catch (Exception e) {
+            // seats are on main page
+        }
     }
 
-    public void selectSixSeats() {
-        String[] seats = {"30U","35U","36U","41U","42U","38L"};
-        for(String s: seats) selectSeat(s);
+    private void dismissOverlayIfPresent() {
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                By.cssSelector("div.bottomSheetOverlay___2c4ff9")
+            ));
+        } catch (Exception e) {
+            // no overlay, continue
+        }
+    }
+
+    public void selectSeat(String seatId) {
+        switchToSeatFrame();
+        dismissOverlayIfPresent();
+        WebElement seat = wait.until(
+            ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//span[@id='" + seatId + "']")
+            )
+        );
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", seat);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", seat);
     }
 
     public void clickOkay() {
-        wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//button[@aria-label='Okay']")
-        )).click();
+        //stay inside iframe:popup is inside iframe too
+        switchToSeatFrame();
+        try {
+            WebElement btn = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                    By.xpath("//button[@aria-label='Okay']")
+                )
+            );
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+        } catch (Exception e) {
+            // popup may not have appeared, continue
+            System.out.println("Okay button not found inside iframe: " + e.getMessage());
+        }
+        dismissOverlayIfPresent();
     }
 
-    public void selectBoardDrop() {
-
-        wait.until(ExpectedConditions.elementToBeClickable(
+    public void selectBoarding() throws InterruptedException {
+        //boarding point is also inside iframe
+        switchToSeatFrame();
+        dismissOverlayIfPresent();
+        WebElement boarding = wait.until(
+            ExpectedConditions.elementToBeClickable(
                 By.xpath("//span[contains(text(),'Board/')]")
-        )).click();
+            )
+        );
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", boarding);
+        
+        Thread.sleep(2000);
+        //boarding point
+          
+          WebElement firstBoarding = driver.findElement(
+                  By.xpath("(//div[contains(@class,'bpdp')]//div[@role='radio'])[1]")
+          );
 
-        driver.findElement(By.xpath("(//div[@role='radio'])[1]")).click();
-        driver.findElement(By.xpath("(//div[@role='radiogroup'])[2]//div[@role='radio'][1]")).click();
+          ((JavascriptExecutor) driver)
+                  .executeScript("arguments[0].click();", firstBoarding);
+          
+          //dropping point
+          
+          WebElement dropping = wait.until(ExpectedConditions.presenceOfElementLocated(
+                  By.xpath("(//div[contains(@class,'bpdp')]//div[@role='radiogroup'])[2]//div[@role='radio'][1]")
+          ));
+
+          ((JavascriptExecutor) driver)
+                  .executeScript("arguments[0].click();", dropping);
+          
+          
+          Thread.sleep(3000);
+          driver.findElement(By.xpath("//span[contains(text(),'Passenger')]")).click();
+          Thread.sleep(3000);
     }
 }

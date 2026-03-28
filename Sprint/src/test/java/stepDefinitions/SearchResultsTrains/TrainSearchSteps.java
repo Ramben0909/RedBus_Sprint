@@ -2,7 +2,7 @@ package stepDefinitions.SearchResultsTrains;
 
 import io.cucumber.java.en.*;
 import org.testng.Assert;
-import utils.ExcelUtilsRB;
+import Utils.ExcelUtilsRB;
 
 public class TrainSearchSteps {
 

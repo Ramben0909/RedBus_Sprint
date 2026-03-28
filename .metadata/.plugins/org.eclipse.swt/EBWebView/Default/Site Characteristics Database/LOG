@@ -1,3 +1,9 @@
-2026/03/26-20:44:51.389 44fc Reusing MANIFEST C:\Users\Ritam\Programming\Capgemini_Sprint\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/MANIFEST-000001
-2026/03/26-20:44:51.394 44fc Recovering log #3
-2026/03/26-20:44:51.394 44fc Reusing old log C:\Users\Ritam\Programming\Capgemini_Sprint\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/000003.log 
+2026/03/28-10:03:16.604 77d8 Reusing MANIFEST C:\Users\Ritam\Programming\Capgemini_Sprint\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/MANIFEST-000001
+2026/03/28-10:03:16.607 77d8 Recovering log #3
+2026/03/28-10:03:16.607 77d8 Level-0 table #3: started
+2026/03/28-10:03:16.611 77d8 Level-0 table #3: 130 bytes OK
+2026/03/28-10:03:16.611 77d8 Recovering log #9
+2026/03/28-10:03:16.611 77d8 Reusing old log C:\Users\Ritam\Programming\Capgemini_Sprint\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/000009.log 
+2026/03/28-10:03:16.614 77d8 Delete type=0 #3
+2026/03/28-10:03:16.614 77d8 Delete type=2 #4
+2026/03/28-10:03:16.614 77d8 Delete type=2 #7

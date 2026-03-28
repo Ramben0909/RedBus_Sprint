@@ -1,6 +1,7 @@
-package Hooks;
+package Hooks.Hooks_SearchTrains;
 
 import Context.ScenarioContext;
+import DriverManager.DriverManagerRB;
 import Pages.Trains.SearchTrainsPage;
 import Pages.Trains.ResultsPage;
 import Pages.Trains.FilterSortPage;
@@ -19,8 +20,8 @@ public class Hooks {
     @Before
     public void setUp() {
         // browser name already set per thread by BrowserParameterListener
-        DriverManager.initDriver();
-        WebDriver driver = DriverManager.getDriver();
+        DriverManagerRB.initDriver();
+        WebDriver driver = DriverManagerRB.getDriver();
 
         ctx.searchPage     = new SearchTrainsPage(driver);
         ctx.resultsPage    = new ResultsPage(driver);
@@ -29,6 +30,6 @@ public class Hooks {
 
     @After
     public void tearDown() {
-        DriverManager.quitDriver();
+        DriverManagerRB.quitDriver();
     }
 }
