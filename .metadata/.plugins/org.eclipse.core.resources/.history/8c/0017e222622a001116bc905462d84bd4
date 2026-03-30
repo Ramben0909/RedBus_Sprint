@@ -1,6 +1,0 @@
-extent.reporter.spark.start=true
-extent.reporter.spark.out=target/ExtentReports/ExtentReport.html
-
-# Optional: report title and name
-extent.reporter.spark.reportName=Bus Booking Test Report
-extent.reporter.spark.documentTitle=Automation Report

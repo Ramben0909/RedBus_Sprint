@@ -1,5 +1,0 @@
-extent.reporter.spark.start=true
-extent.reporter.spark.out=target/ExtentReports/ExtentReport.html
-extent.reporter.spark.config=src/test/resources/spark-config.xml
-systeminfo.os=Windows 11
-systeminfo.browser=Chrome/Edge/Firefox
