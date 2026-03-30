@@ -1,2 +1,4 @@
 .metadata/
 *.log
+Sprint/.metadata/
+petstore-api-testing/.metadata/
