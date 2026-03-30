@@ -1,11 +1,11 @@
 package petstore.tests;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import petstore.api.PetApi;
+import petstore.base.BaseTest;
 import petstore.models.Category;
 import petstore.models.Pet;
 import petstore.models.Tag;
@@ -13,24 +13,23 @@ import petstore.utils.PetTestData;
 
 import java.util.Arrays;
 
-public class PetTests {
+public class PetTests extends BaseTest{
 
     private PetApi petApi;
 
     @BeforeClass
-    public void setup() {
-        RestAssured.baseURI = "https://petstore.swagger.io/v2";
-        petApi = new PetApi();
+    public void init() {
+    	petApi = new PetApi();
     }
 
     @Test(priority = 1)
     public void testAddNewPet() {
-        // 1. Arrange (Set up data)
+       
         Category category = new Category(PetTestData.CATEGORY_ID, PetTestData.CATEGORY_NAME);
         Tag tag = new Tag(PetTestData.TAG_ID, PetTestData.TAG_NAME);
         Pet petPayload = new Pet(PetTestData.PET_ID, category, PetTestData.INITIAL_PET_NAME, PetTestData.PHOTO_URLS, Arrays.asList(tag), PetTestData.INITIAL_STATUS);
 
-        // 2. Act (Call the API)
+       
         Response response = petApi.addNewPet(petPayload);
         response.then().log().all();
 
