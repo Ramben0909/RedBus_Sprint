@@ -106,3 +106,12 @@
 0:03:50 Memory Pressure: Moderate
 0:04:00 Memory Pressure: Moderate
 0:04:05 Memory Pressure: None
+0:06:30 Memory Pressure: Moderate
+0:06:40 Memory Pressure: Moderate
+0:06:50 Memory Pressure: Moderate
+0:06:55 Memory Pressure: None
+0:08:05 Memory Pressure: Moderate
+0:08:10 Memory Pressure: None
+0:08:50 Memory Pressure: Moderate
+0:08:55 Memory Pressure: None
+0:09:03 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
