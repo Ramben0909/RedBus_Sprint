@@ -1,4 +1,4 @@
-package petstore.model;
+package petstore.models;
 
 public class Order {
     private int id;
