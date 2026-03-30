@@ -1,23 +1,21 @@
 package petstore.tests;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import petstore.api.StoreApi;
+import petstore.base.BaseTest;
 import petstore.models.Order;
 
-public class StoreTests {
+public class StoreTests extends BaseTest {
 
     private StoreApi storeApi;
 
     @BeforeClass
-    public void setup() {
-        RestAssured.baseURI = "https://petstore.swagger.io/v2";
+    public void init() {
         storeApi = new StoreApi();
     }
-
 
     @Test(priority = 1)
     public void testPlaceOrder() {

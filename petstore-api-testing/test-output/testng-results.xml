@@ -2,32 +2,36 @@
 <testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-30T12:18:25 IST" name="Default suite" finished-at="2026-03-30T12:18:35 IST" duration-ms="10385">
+  <suite started-at="2026-03-30T14:51:45 IST" name="Default suite" finished-at="2026-03-30T14:51:55 IST" duration-ms="10403">
     <groups>
     </groups>
-    <test started-at="2026-03-30T12:18:25 IST" name="Default test" finished-at="2026-03-30T12:18:35 IST" duration-ms="10385">
-      <class name="petstore.store.StoreTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:petstore.store.StoreTests@67c27493]" started-at="2026-03-30T12:18:25 IST" name="setup" finished-at="2026-03-30T12:18:25 IST" duration-ms="516" status="PASS">
+    <test started-at="2026-03-30T14:51:45 IST" name="Default test" finished-at="2026-03-30T14:51:55 IST" duration-ms="10403">
+      <class name="petstore.tests.StoreTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:45 IST" name="setup" finished-at="2026-03-30T14:51:45 IST" duration-ms="503" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="testPlaceOrder()[pri:1, instance:petstore.store.StoreTests@67c27493]" started-at="2026-03-30T12:18:25 IST" name="testPlaceOrder" finished-at="2026-03-30T12:18:30 IST" duration-ms="5178" status="PASS">
+        <test-method is-config="true" signature="init()[pri:0, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:45 IST" name="init" finished-at="2026-03-30T14:51:45 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method signature="testPlaceOrder()[pri:1, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:45 IST" name="testPlaceOrder" finished-at="2026-03-30T14:51:50 IST" duration-ms="4689" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testPlaceOrder -->
-        <test-method signature="testGetOrderById()[pri:2, instance:petstore.store.StoreTests@67c27493]" started-at="2026-03-30T12:18:30 IST" name="testGetOrderById" finished-at="2026-03-30T12:18:32 IST" duration-ms="1350" status="PASS">
+        <test-method signature="testGetOrderById()[pri:2, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:50 IST" name="testGetOrderById" finished-at="2026-03-30T14:51:51 IST" duration-ms="1444" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetOrderById -->
-        <test-method signature="testGetInventory()[pri:3, instance:petstore.store.StoreTests@67c27493]" started-at="2026-03-30T12:18:32 IST" name="testGetInventory" finished-at="2026-03-30T12:18:33 IST" duration-ms="1456" status="PASS">
+        <test-method signature="testGetInventory()[pri:3, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:51 IST" name="testGetInventory" finished-at="2026-03-30T14:51:54 IST" duration-ms="2294" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetInventory -->
-        <test-method signature="testDeleteOrder()[pri:4, instance:petstore.store.StoreTests@67c27493]" started-at="2026-03-30T12:18:33 IST" name="testDeleteOrder" finished-at="2026-03-30T12:18:35 IST" duration-ms="1809" status="PASS">
+        <test-method signature="testDeleteOrder()[pri:4, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:54 IST" name="testDeleteOrder" finished-at="2026-03-30T14:51:55 IST" duration-ms="1415" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteOrder -->
-      </class> <!-- petstore.store.StoreTests -->
+      </class> <!-- petstore.tests.StoreTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
