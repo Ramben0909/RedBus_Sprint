@@ -1,12 +1,12 @@
-package tests;
+package petstore.tests;
 
-import base.BaseTestAP;
+import petstore.base.BaseTestAP;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pojo.UserAP;
-import utils.ApiUtilsAP;
-import utils.JSValidatorAP;
+import petstore.models.UserAP;
+import petstore.utils.ApiUtilsAP;
+import petstore.utils.JSValidatorAP;
 
 import java.util.Arrays;
 import java.util.List;
