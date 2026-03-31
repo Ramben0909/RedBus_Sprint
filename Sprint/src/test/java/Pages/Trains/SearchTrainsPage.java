@@ -199,14 +199,13 @@ public class SearchTrainsPage {
     }
 
     public void selectDate(String dateStr) throws InterruptedException {
+        // Handle Excel storing numbers as doubles e.g. "15.0" → 15
         int dayNumber;
-
-        if (dateStr.equalsIgnoreCase("today")) {
-            dayNumber = java.time.LocalDate.now().getDayOfMonth() + 2;
-        } else if (dateStr.equalsIgnoreCase("tomorrow")) {
-            dayNumber = java.time.LocalDate.now().getDayOfMonth() + 3;
-        } else {
-            dayNumber = Integer.parseInt(dateStr) + 2;
+        try {
+            dayNumber = Integer.parseInt(dateStr.trim());
+        } catch (NumberFormatException e) {
+            // Handle float strings like "15.0"
+            dayNumber = (int) Double.parseDouble(dateStr.trim());
         }
 
         String day       = String.valueOf(dayNumber);
