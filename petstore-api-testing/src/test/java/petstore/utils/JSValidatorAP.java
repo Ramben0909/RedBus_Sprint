@@ -13,7 +13,7 @@ public class JSValidatorAP {
         ScriptEngineManager manager = new ScriptEngineManager();
 
         
-        ScriptEngine graal = manager.getEngineByName("graal.js");
+        ScriptEngine graal = manager.getEngineByName("js");
         engine = (graal != null) ? graal : manager.getEngineByName("nashorn");
 
         if (engine == null) {
