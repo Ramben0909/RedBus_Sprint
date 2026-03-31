@@ -298,7 +298,7 @@
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;Petstore Suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;listeners&gt;
-    &lt;listener class-name=&quot;io.qameta.allure.testng.AllureTestNg&quot;/&gt;
+    &lt;listener class-name=&quot;petstore.utils.CustomHtmlReporter&quot;/&gt;
   &lt;/listeners&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;UserTests&quot;&gt;
     &lt;parameter name=&quot;environment&quot; value=&quot;qa&quot;/&gt;
@@ -345,58 +345,58 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(12);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'tc08_updateUser')
+data.setCell(0, 1, 'tc07_getUserByName_notFound')
 data.setCell(0, 2, 'petstore.tests.UserTestsAP')
-data.setCell(0, 3, 3953);
+data.setCell(0, 3, 4306);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'tc07_getUserByName_notFound')
+data.setCell(1, 1, 'tc01_createUser')
 data.setCell(1, 2, 'petstore.tests.UserTestsAP')
-data.setCell(1, 3, 3332);
+data.setCell(1, 3, 3476);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'tc01_createUser')
+data.setCell(2, 1, 'tc08_updateUser')
 data.setCell(2, 2, 'petstore.tests.UserTestsAP')
-data.setCell(2, 3, 3307);
+data.setCell(2, 3, 3074);
 data.setCell(3, 0, 3)
 data.setCell(3, 1, 'tc11_deleteUser_exists')
 data.setCell(3, 2, 'petstore.tests.UserTestsAP')
-data.setCell(3, 3, 3161);
+data.setCell(3, 3, 3013);
 data.setCell(4, 0, 4)
 data.setCell(4, 1, 'tc06_getUserByName_exists')
 data.setCell(4, 2, 'petstore.tests.UserTestsAP')
-data.setCell(4, 3, 1685);
+data.setCell(4, 3, 1817);
 data.setCell(5, 0, 5)
 data.setCell(5, 1, 'tc09_updateUser_notFound')
 data.setCell(5, 2, 'petstore.tests.UserTestsAP')
-data.setCell(5, 3, 1627);
+data.setCell(5, 3, 1617);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'tc02_createUsersWithArray')
+data.setCell(6, 1, 'tc05_loginUser_invalidCredentials')
 data.setCell(6, 2, 'petstore.tests.UserTestsAP')
-data.setCell(6, 3, 1619);
+data.setCell(6, 3, 1606);
 data.setCell(7, 0, 7)
-data.setCell(7, 1, 'tc05_loginUser_invalidCredentials')
+data.setCell(7, 1, 'tc02_createUsersWithArray')
 data.setCell(7, 2, 'petstore.tests.UserTestsAP')
-data.setCell(7, 3, 1542);
+data.setCell(7, 3, 1592);
 data.setCell(8, 0, 8)
-data.setCell(8, 1, 'tc12_deleteUser_notFound')
+data.setCell(8, 1, 'tc03_createUsersWithList')
 data.setCell(8, 2, 'petstore.tests.UserTestsAP')
-data.setCell(8, 3, 1525);
+data.setCell(8, 3, 1572);
 data.setCell(9, 0, 9)
 data.setCell(9, 1, 'tc04_loginUser_validCredentials')
 data.setCell(9, 2, 'petstore.tests.UserTestsAP')
-data.setCell(9, 3, 1467);
+data.setCell(9, 3, 1568);
 data.setCell(10, 0, 10)
-data.setCell(10, 1, 'tc03_createUsersWithList')
+data.setCell(10, 1, 'tc12_deleteUser_notFound')
 data.setCell(10, 2, 'petstore.tests.UserTestsAP')
-data.setCell(10, 3, 1361);
+data.setCell(10, 3, 1475);
 data.setCell(11, 0, 11)
 data.setCell(11, 1, 'tc10_logoutUser')
 data.setCell(11, 2, 'petstore.tests.UserTestsAP')
-data.setCell(11, 3, 1321);
+data.setCell(11, 3, 1379);
 window.suiteTableData['Petstore_Suite']= { tableData: data, tableDiv: 'times-div-Petstore_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 25 seconds</span>
+              <span class="suite-total-time">Total running time: 26 seconds</span>
               <div id="times-div-Petstore_Suite">
               </div> <!-- times-div-Petstore_Suite -->
             </div> <!-- times-div -->
@@ -429,55 +429,55 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-class before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">737 ms</span>
+                <span class="method-start">965 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">tc07_getUserByName_notFound</span>
-                <span class="method-start">760 ms</span>
+                <span class="method-start">999 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc01_createUser</span>
-                <span class="method-start">4190 ms</span>
+                <span class="method-start">5404 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc02_createUsersWithArray</span>
-                <span class="method-start">7509 ms</span>
+                <span class="method-start">8887 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc03_createUsersWithList</span>
-                <span class="method-start">9140 ms</span>
+                <span class="method-start">10484 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc04_loginUser_validCredentials</span>
-                <span class="method-start">10509 ms</span>
+                <span class="method-start">12063 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc05_loginUser_invalidCredentials</span>
-                <span class="method-start">11984 ms</span>
+                <span class="method-start">13639 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc06_getUserByName_exists</span>
-                <span class="method-start">13533 ms</span>
+                <span class="method-start">15259 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc08_updateUser</span>
-                <span class="method-start">15224 ms</span>
+                <span class="method-start">17082 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc09_updateUser_notFound</span>
-                <span class="method-start">19184 ms</span>
+                <span class="method-start">20165 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc10_logoutUser</span>
-                <span class="method-start">20821 ms</span>
+                <span class="method-start">21791 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc11_deleteUser_exists</span>
-                <span class="method-start">22147 ms</span>
+                <span class="method-start">23180 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">tc12_deleteUser_notFound</span>
-                <span class="method-start">25315 ms</span>
+                <span class="method-start">26199 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
