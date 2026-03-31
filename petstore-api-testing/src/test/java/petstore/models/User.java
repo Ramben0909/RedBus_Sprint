@@ -1,119 +1,51 @@
 package petstore.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
-	@JsonProperty("id")
-	private int id;
+    private int id;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private String phone;
+    private int userStatus;
 
-	@JsonProperty("username")
-	private String username;
+    public User() {}
 
-	@JsonProperty("firstName")
-	private String firstName;
+    public User(int id, String username, String firstName, String lastName,
+                String email, String password, String phone, int userStatus) {
+        this.id = id;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.userStatus = userStatus;
+    }
 
-	@JsonProperty("lastName")
-	private String lastName;
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-	@JsonProperty("email")
-	private String email;
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-	@JsonProperty("password")
-	private String password;
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-	@JsonProperty("phone")
-	private String phone;
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
-	@JsonProperty("userStatus")
-	private int userStatus;
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-	public User() {
-	}
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-	public User(int id, String username, String firstName, String lastName, String email, String password, String phone,
-			int userStatus) {
-		this.id = id;
-		this.username = username;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.phone = phone;
-		this.userStatus = userStatus;
-	}
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public int getUserStatus() {
-		return userStatus;
-	}
-
-	public void setUserStatus(int userStatus) {
-		this.userStatus = userStatus;
-	}
-
-	@Override
-	public String toString() {
-		return "User{id=" + id + ", username='" + username + "', firstName='" + firstName + "', lastName='" + lastName
-				+ "', email='" + email + "', userStatus=" + userStatus + "}";
-	}
+    public int getUserStatus() { return userStatus; }
+    public void setUserStatus(int userStatus) { this.userStatus = userStatus; }
 }
