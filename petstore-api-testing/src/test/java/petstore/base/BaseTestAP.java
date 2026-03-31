@@ -1,6 +1,6 @@
-package base;
+package petstore.base;
 
-import config.ConfigManagerAP;
+import petstore.utils.ConfigManagerAP;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
