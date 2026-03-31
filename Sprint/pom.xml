@@ -65,7 +65,7 @@
         </dependency>
 
         <!-- Apache POI -->
-<!--         <dependency>
+         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.2.5</version>
@@ -94,7 +94,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.2</version> <!-- Or your current version -->
+        <version>3.2.2</version> 
         <configuration>
           <argLine>
             --add-opens java.base/java.lang=ALL-UNNAMED
