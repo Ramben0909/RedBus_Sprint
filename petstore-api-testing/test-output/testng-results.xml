@@ -2,32 +2,32 @@
 <testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-30T14:51:45 IST" name="Default suite" finished-at="2026-03-30T14:51:55 IST" duration-ms="10403">
+  <suite started-at="2026-03-30T15:44:47 IST" name="Default suite" finished-at="2026-03-30T15:44:58 IST" duration-ms="10168">
     <groups>
     </groups>
-    <test started-at="2026-03-30T14:51:45 IST" name="Default test" finished-at="2026-03-30T14:51:55 IST" duration-ms="10403">
+    <test started-at="2026-03-30T15:44:47 IST" name="Default test" finished-at="2026-03-30T15:44:58 IST" duration-ms="10168">
       <class name="petstore.tests.StoreTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:45 IST" name="setup" finished-at="2026-03-30T14:51:45 IST" duration-ms="503" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T15:44:47 IST" name="setup" finished-at="2026-03-30T15:44:48 IST" duration-ms="701" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="init()[pri:0, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:45 IST" name="init" finished-at="2026-03-30T14:51:45 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="init()[pri:0, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T15:44:48 IST" name="init" finished-at="2026-03-30T15:44:48 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method signature="testPlaceOrder()[pri:1, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:45 IST" name="testPlaceOrder" finished-at="2026-03-30T14:51:50 IST" duration-ms="4689" status="PASS">
+        <test-method signature="testPlaceOrder()[pri:1, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T15:44:48 IST" name="testPlaceOrder" finished-at="2026-03-30T15:44:53 IST" duration-ms="4736" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testPlaceOrder -->
-        <test-method signature="testGetOrderById()[pri:2, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:50 IST" name="testGetOrderById" finished-at="2026-03-30T14:51:51 IST" duration-ms="1444" status="PASS">
+        <test-method signature="testGetOrderById()[pri:2, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T15:44:53 IST" name="testGetOrderById" finished-at="2026-03-30T15:44:55 IST" duration-ms="1643" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetOrderById -->
-        <test-method signature="testGetInventory()[pri:3, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:51 IST" name="testGetInventory" finished-at="2026-03-30T14:51:54 IST" duration-ms="2294" status="PASS">
+        <test-method signature="testGetInventory()[pri:3, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T15:44:55 IST" name="testGetInventory" finished-at="2026-03-30T15:44:56 IST" duration-ms="1604" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetInventory -->
-        <test-method signature="testDeleteOrder()[pri:4, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T14:51:54 IST" name="testDeleteOrder" finished-at="2026-03-30T14:51:55 IST" duration-ms="1415" status="PASS">
+        <test-method signature="testDeleteOrder()[pri:4, instance:petstore.tests.StoreTests@351d00c0]" started-at="2026-03-30T15:44:56 IST" name="testDeleteOrder" finished-at="2026-03-30T15:44:58 IST" duration-ms="1417" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteOrder -->
