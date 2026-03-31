@@ -37,8 +37,8 @@ public class ExcelUtilsRB {
         fis.close();
         return data;
     }
-
-    // ── fetch specific row by data_id ──────────────────────────────────────────
+ 
+    //fetch specific row by data_id
 
     public static String[] getRowById(String sheetName,
                                        String dataId) throws IOException {
@@ -57,30 +57,5 @@ public class ExcelUtilsRB {
         throw new RuntimeException(
             "data_id '" + dataId + "' not found in sheet: " + sheetName);
     }
-
-    // ── existing methods kept ──────────────────────────────────────────────────
-
-    public static List<String[]> getValidSearchRows() throws IOException {
-        return getDataRows(FILE_PATH, "ValidSearch");
-    }
-
-    public static List<String[]> getDateSearchRows() throws IOException {
-        return getDataRows(FILE_PATH, "DateSearch");
-    }
-
-    public static List<String[]> getInvalidSearchRows() throws IOException {
-        return getDataRows(FILE_PATH, "InvalidSearch");
-    }
-
-    private static List<String[]> getDataRows(String filePath,
-                                               String sheetName) throws IOException {
-        List<String[]> all      = getTestData(filePath, sheetName);
-        List<String[]> filtered = new ArrayList<>();
-        for (int i = 1; i < all.size(); i++) {
-            String[] row = all.get(i);
-            if (row == null || row[0].trim().isEmpty()) continue;
-            filtered.add(row);
-        }
-        return filtered;
-    }
+     
 }
