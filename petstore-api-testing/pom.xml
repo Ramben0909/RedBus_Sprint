@@ -55,6 +55,8 @@
     <artifactId>allure-testng</artifactId>
     <version>2.24.0</version>
 </dependency>
+<<<<<<< HEAD
+=======
 <dependency>
     <groupId>org.graalvm.js</groupId>
     <artifactId>js-scriptengine</artifactId>
@@ -72,6 +74,7 @@
     <version>22.3.0</version>
 </dependency>
 
+>>>>>>> 2a687667e6cc9a846815f8ef69412f4fdbf9808b
     </dependencies>
 
     <build>
