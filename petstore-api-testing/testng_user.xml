@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Petstore Suite - User Tests" verbose="1">
+
+	<listeners>
+		<listener class-name="petstore.utils.CustomHtmlReporter" />
+	</listeners>
+
+	<test name="User API Tests">
+		<parameter name="environment" value="qa" />
+		<classes>
+			<class name="petstore.tests.UserTests" />
+		</classes>
+	</test>
+
+</suite>
