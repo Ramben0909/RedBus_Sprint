@@ -1,37 +1,25 @@
 package petstore.base;
 
-import petstore.utils.ConfigManagerAP;
 import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.filter.log.LogDetail;
-import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 
+import static io.restassured.RestAssured.given;
 
 public class BaseTestAP {
 
-    protected static RequestSpecification requestSpec;
-
-    @BeforeSuite
-    public void globalSetup() {
-        // Load base URI from config
-        RestAssured.baseURI = ConfigManagerAP.get("base.url");
-
-        // Build a reusable RequestSpecification
-        requestSpec = new RequestSpecBuilder()
-                .setBaseUri(ConfigManagerAP.get("base.url"))
-                .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON)
-                .log(LogDetail.ALL)
-                .build();
-
-        System.out.println("Base URI set to: " + ConfigManagerAP.get("base.url"));
-    }
+    protected RequestSpecification requestSpec;
 
     @BeforeClass
     public void setUp() {
-        System.out.println("Running test class: " + this.getClass().getSimpleName());
+        // Set base URI once
+        RestAssured.baseURI = "https://petstore.swagger.io/v2";
+
+        // Basic request setup
+        requestSpec = given()
+                .contentType("application/json")
+                .accept("application/json");
+
+        System.out.println("Setup done for: " + this.getClass().getSimpleName());
     }
 }
