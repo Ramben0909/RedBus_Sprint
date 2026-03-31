@@ -41,3 +41,13 @@ Thumbs.db
 .vscode/
 .metadata/
 Sprint/.metadata/
+
+# TestNG & Rest Assured output
+/test-output/
+test-output/
+
+# Maven (most common)
+target/
+
+# Gradle (if using)
+build/
