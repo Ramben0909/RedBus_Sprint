@@ -12,7 +12,7 @@ public class ConfigManagerAP {
     static {
         try (InputStream is = ConfigManagerAP.class
                 .getClassLoader()
-                .getResourceAsStream("config.properties")) {
+                .getResourceAsStream("configAP.properties")) {
 
             if (is == null) {
                 throw new RuntimeException("config.properties not found on classpath!");
