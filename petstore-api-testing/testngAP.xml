@@ -2,7 +2,7 @@
 <suite name="Petstore Suite">
 
     <listeners>
-        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="petstore.utils.CustomHtmlReporter"/>
     </listeners>
 
     <test name="UserTests">
@@ -15,4 +15,4 @@
 
     </test>
 
-</suite>
+</suite> 
