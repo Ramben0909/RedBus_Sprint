@@ -38,7 +38,7 @@ public class StoreTests extends BaseTest {
     public void testGetOrderById() {
         Response response = storeApi.getOrderById(101);
         response.then().log().all();
-
+        
         Assert.assertEquals(response.getStatusCode(), 200, "Status code mismatch");
         Assert.assertEquals(response.jsonPath().getInt("id"), 101, "Order ID mismatch");
         Assert.assertEquals(response.jsonPath().getString("status"), "placed", "Order status mismatch");
