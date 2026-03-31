@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <theme>DARK</theme>
+        <documentTitle>RedRail Test Report</documentTitle>
+        <reportName>RedRail Automation Suite</reportName>
+        <timeStampFormat>MM/dd/yyyy, hh:mm a</timeStampFormat>
+        <encoding>UTF-8</encoding>
+        <offlineMode>false</offlineMode>
+    </configuration>
+</extentreports>

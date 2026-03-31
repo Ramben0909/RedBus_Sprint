@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="AP Test Suite" verbose="1" parallel="none">
+
+    
+
+    <test name="AP Module">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="testRunner.runnerAP.TestRunner"/>
+        </classes>
+    </test>
+
+</suite>

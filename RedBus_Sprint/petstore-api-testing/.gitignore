@@ -1,0 +1,110 @@
+# ==========================================
+# .gitignore for REST API Maven Project
+# ==========================================
+
+
+# ------------------------------------------
+# Maven build output
+# ------------------------------------------
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+
+# ------------------------------------------
+# Compiled bytecode
+# ------------------------------------------
+*.class
+
+
+# ------------------------------------------
+# Packaged artifacts
+# ------------------------------------------
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+
+# ------------------------------------------
+# Test output (TestNG / Surefire / Allure)
+# ------------------------------------------
+test-output/
+surefire-reports/
+allure-results/
+allure-report/
+extent-reports/
+
+
+# ------------------------------------------
+# Logs
+# ------------------------------------------
+*.log
+logs/
+
+
+# ------------------------------------------
+# RestAssured / HTTP response dumps
+# ------------------------------------------
+*.json.dump
+response-logs/
+
+
+# ------------------------------------------
+# Environment / config files with secrets
+# ------------------------------------------
+.env
+*.properties
+!src/test/resources/config.properties
+
+# ↑ The ! above re-includes your checked-in
+#   config — remove if you use .env only
+
+
+# ------------------------------------------
+# IntelliJ IDEA
+# ------------------------------------------
+.idea/
+*.iml
+*.iws
+*.ipr
+
+
+# ------------------------------------------
+# Eclipse / STS
+# ------------------------------------------
+.classpath
+.project
+.settings/
+bin/
+
+
+# ------------------------------------------
+# VS Code
+# ------------------------------------------
+.vscode/
+
+
+# ------------------------------------------
+# OS files
+# ------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# TestNG & Rest Assured output
+/test-output/
+test-output/
+
+# Maven (most common)
+target/
+
+# Gradle (if using)
+build/
+
+.idea/

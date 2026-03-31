@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Petstore Suite">
+
+    <listeners>
+        <listener class-name="petstore.utils.CustomHtmlReporter"/>
+    </listeners>
+
+    <test name="UserTests">
+
+        <parameter name="environment" value="qa"/>
+
+        <classes>
+            <class name="petstore.tests.UserTestsAP"/>
+        </classes>
+
+    </test>
+
+</suite> 
