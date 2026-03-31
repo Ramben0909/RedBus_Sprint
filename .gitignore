@@ -2,3 +2,37 @@
 *.log
 Sprint/.metadata/
 petstore-api-testing/.metadata/
+
+# TestNG & Rest Assured output
+Sprint/test-output/
+Sprint/test-output/
+
+# Maven (most common)
+Sprint/target/
+
+# Gradle (if using)
+Sprint/build/
+
+# TestNG & Rest Assured output
+petstore-api-testing/test-output/
+petstore-api-testing/test-output/
+
+# Maven (most common)
+petstore-api-testing/target/
+
+# Gradle (if using)
+petstore-api-testing/build/
+
+
+# TestNG & Rest Assured output
+/test-output/
+test-output/
+
+# Maven (most common)
+target/
+
+# Gradle (if using)
+build/
+
+Sprint/.idea/
+petstore-api-testing/.idea/
