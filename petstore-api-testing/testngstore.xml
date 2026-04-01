@@ -2,9 +2,7 @@
 
 <suite name="Store Suite" parallel="none">
 
-    <listeners>
-        <listener class-name="petstore.utils.CustomHtmlReporter"/>
-    </listeners>
+   
 
     <test name="Store Tests">
         <classes>

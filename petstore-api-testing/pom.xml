@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://www.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -9,12 +10,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <rest-assured.version>5.4.0</rest-assured.version>
         <testng.version>7.9.0</testng.version>
         <jackson.version>2.16.1</jackson.version>
+        <allure.version>2.24.0</allure.version>
     </properties>
 
     <dependencies>
@@ -26,19 +28,19 @@
             <version>${rest-assured.version}</version>
         </dependency>
 
+        <!-- JSON Path -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- JSON Path -->
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-path</artifactId>
-            <version>${rest-assured.version}</version>
         </dependency>
 
         <!-- Jackson -->
@@ -48,44 +50,61 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- Allure -->
+        <!-- Allure TestNG -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.24.0</version>
+            <version>${allure.version}</version>
         </dependency>
 
-        <!-- Keep only ONE Graal dependency -->
+        <!-- SLF4J Logger FIX (removes warning) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.12</version>
+        </dependency>
+
+        <!-- Graal JS (keep only one) -->
         <dependency>
             <groupId>org.graalvm.js</groupId>
             <artifactId>js-scriptengine</artifactId>
             <version>23.0.1</version>
         </dependency>
+        
 
     </dependencies>
 
     <build>
         <plugins>
 
-            <!-- Compiler -->
+            <!-- Compiler Plugin (Fixed Java 17 warning) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <release>${maven.compiler.release}</release>
                 </configuration>
             </plugin>
 
-            <!-- Surefire for TestNG + Allure -->
+            <!-- Surefire Plugin (Runs ALL TestNG XMLs) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0</version>
+
                 <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng_sdc.xml</suiteXmlFile>
+                        <suiteXmlFile>testng_user.xml</suiteXmlFile>
+                        <suiteXmlFile>testngAP.xml</suiteXmlFile>
+                        <suiteXmlFile>testngstore.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+
                     <systemPropertyVariables>
-                        <allure.results.directory>target/allure-results</allure.results.directory>
+                        <allure.results.directory>
+                            target/allure-results
+                        </allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

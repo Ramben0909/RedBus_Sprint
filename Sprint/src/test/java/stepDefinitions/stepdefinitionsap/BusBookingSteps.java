@@ -1,4 +1,4 @@
-package stepDefinitions.stepdefinitionsap;
+package stepDefinitions.stepdefinitionsAP;
 
 import DriverManager.DriverManagerAP;
 import Pages.pagesAP.BusSelectionPage;
