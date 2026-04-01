@@ -68,31 +68,20 @@ public class FilterSortSteps {
             int hour   = Integer.parseInt(hm[0]);
             int minute = Integer.parseInt(hm[1]);
             String ampm = parts[1];
-
             if (ampm.equalsIgnoreCase("PM") && hour != 12) hour += 12;
             else if (ampm.equalsIgnoreCase("AM") && hour == 12) hour = 0;
-
             minutes.add(hour * 60 + minute);
         }
-
-        // ── handle next-day wraparound ────────────────────────────────────
-        // if a time is significantly LESS than the previous one,
-        // it means it crossed midnight — add 24hrs to it and all after it
         List<Integer> adjusted = new ArrayList<>();
         int offset = 0;
-
         for (int i = 0; i < minutes.size(); i++) {
             int current = minutes.get(i) + offset;
-
             if (i > 0 && current < adjusted.get(i - 1)) {
-                // crossed midnight — shift this and all subsequent by 24hrs
                 offset += 24 * 60;
                 current += 24 * 60;
             }
             adjusted.add(current);
         }
-
-        // ── assert adjusted times are in order ────────────────────────────
         for (int i = 0; i < adjusted.size() - 1; i++) {
             Assert.assertTrue(
                 adjusted.get(i) <= adjusted.get(i + 1),
