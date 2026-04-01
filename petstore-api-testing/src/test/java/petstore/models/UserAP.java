@@ -99,16 +99,16 @@ public class UserAP {
 
     // ── Static factory: default test user ────────────────────────────────────────
 
-    /**
-     * Returns a pre-filled User object suitable for POST/create tests.
-     */
+    
+     // Returns a pre-filled User object suitable for POST/create tests.
+     
     public static UserAP defaultTestUser() {
         return new UserAP(
-                100001L,
-                "optimus prime",
+                System.currentTimeMillis(),
+                "temp_user",
                 "Optimus",
                 "Prime",
-                "op@petstore.com",
+                "test_" + System.currentTimeMillis() + "@mail.com",
                 "Pass@1234",
                 "9876543210",
                 1
