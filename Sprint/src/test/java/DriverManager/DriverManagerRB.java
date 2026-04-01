@@ -10,7 +10,7 @@ import java.time.Duration;
 public class DriverManagerRB {
 
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    private static volatile String browserName = "chrome";  // shared across all threads
+    private static volatile String browserName = "chrome";  
 
     public static void setBrowserName(String browser) {
         browserName = browser;
