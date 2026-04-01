@@ -40,7 +40,7 @@ public class JSValidatorAP {
 
         } catch (ScriptException e) {
             throw new RuntimeException(
-                "❌ JS validation script error: " + e.getMessage(), e
+                "JS validation script error: " + e.getMessage(), e
             );
         }
     }
